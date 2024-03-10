@@ -1,0 +1,2875 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <base target="_top">
+  </head>
+  <body>
+    <!-- <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <h2>Now Loading...</h2>
+    </div> -->
+
+    <!-- ユーザー名 -->
+    <div class="user"><?=user_name ?>さん（<?=user_class ?>）</div>
+    <!-- レッスン名 -->
+    <div class="lesson" id="lesson"><?=lesson ?></div></br>
+    <!-- PINコードが違う時の画像 -->
+    <img class="image_place" id="image_place">
+    <!-- Lessonの目標 -->
+    <div class="goal" id="goal">【 <?=goal ?> の Goal（目標）】</div>
+    <div class="goals" id="goals">
+      <div class="goal1" id="goal1">① <?=goal1 ?></div>
+      <div class="goal2" id="goal2">② <?=goal2 ?></div>
+    </div>
+    <br><br>
+
+    <!-- 他サイト等リンク -->
+    <div class="document" id="docHead">【資料】</div>
+    <table class="docTable" id="docTable">
+      <!-- リンク等（jsでリンク変更） -->
+      <td class="doc">
+      <a href="https://www.google.com/" target="_blank" onclick='linkClick(this);' class="docs" id="doc1"><?=docTitle1 ?></a><br>
+      <script type='text/javascript'>
+        function linkClick(aTag) {
+        aTag.href = <?=docURL1 ?>;
+        }
+      </script>
+      <a href="https://www.google.com/" target="_blank" onclick='linkClick2(this);' class="docs" id="doc2"><?=docTitle2 ?></a>
+      <script type="text/javascript">
+        function linkClick2(aTag) {
+        aTag.href = <?=docURL2 ?>;
+        }
+      </script>
+      </td>
+    </div>
+    </table>
+    <br><br>
+
+    <!-- フレーム -->
+    <div class="header" id="header">【Conversation Frame】<?=frame ?></div>
+    <table class="frameTable" id="frameTable">
+      <tr>
+        <td class="fm">
+          <div class="cfm" id="ifm">メモ</div>
+        </td>
+        <td class="fe">
+          <div class="cfe" id="ife">英語
+          <input class="rButton" id="hiddenButton" type="button" onClick="addBtnClick2()" value="非表示">
+          <input class="rButton" id="showButton" type="button" onClick="addBtnClick3()" value="表示">
+          </div>
+        </td>
+        <td class="fj">
+          <div class="cfj" id="ifj">日本語</div>
+        </td>
+      <tr>
+        <td>
+          <textarea class="frameMemo" id="frameMemo" tabindex="1"><?=frameMemo ?></textarea>
+        </td>
+        <td class="frameEng" id="frameEng">
+          <div id="e1"><?=frameEng1 ?></div>
+          <div id="e2"><?=frameEng2 ?></div>
+          <div id="e3"><?=frameEng3 ?></div>
+          <div id="e4"><?=frameEng4 ?></div>
+          <div id="e5"><?=frameEng5 ?></div>
+          <div id="e6"><?=frameEng6 ?></div>
+          <div id="e7"><?=frameEng7 ?></div>
+          <div id="e8"><?=frameEng8 ?></div>
+          <div id="e9"><?=frameEng9 ?></div>
+          <div id="e10"><?=frameEng10 ?></div>
+          <div id="e11"><?=frameEng11 ?></div>
+          <div id="e12"><?=frameEng12 ?></div>
+          <div id="e13"><?=frameEng13 ?></div>
+          <div id="e14"><?=frameEng14 ?></div>
+          <div id="e15"><?=frameEng15 ?></div>
+        </td>
+        <td class="frameJap">
+          <div id="j1"><?=frameJap1 ?></div>
+          <div id="j2"><?=frameJap2 ?></div>
+          <div id="j3"><?=frameJap3 ?></div>
+          <div id="j4"><?=frameJap4 ?></div>
+          <div id="j5"><?=frameJap5 ?></div>
+          <div id="j6"><?=frameJap6 ?></div>
+          <div id="j7"><?=frameJap7 ?></div>
+          <div id="j8"><?=frameJap8 ?></div>
+          <div id="j9"><?=frameJap9 ?></div>
+          <div id="j10"><?=frameJap10 ?></div>
+          <div id="j11"><?=frameJap11 ?></div>
+          <div id="j12"><?=frameJap12 ?></div>
+          <div id="j13"><?=frameJap13 ?></div>
+          <div id="j14"><?=frameJap14 ?></div>
+          <div id="j15"><?=frameJap15 ?></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    
+    <!-- 記録ボタン -->
+    <div>
+      <input class="rButton" id="rButton" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+
+    <!-- 単語 -->
+    <div class="header" id="vHeader">【Vocabulary（単語・熟語）】意味と発音を確認しよう！</div>
+    <div>★ = 書けるようになるべき語彙</div>
+    <table class="vocTable" id="vocTable">
+      <tr>
+        <td class="num">
+          <div id="no.">No.</div>
+        </td>
+        <td class="voc">
+          <div class="vocab" id="vocab">単語・熟語</div>
+        </td>
+        <td class="mean">
+          <div class="meaning" id="meaning">意味</div>
+        </td>
+        <td class="vocMemo">
+          <div class="vocabMemo" id="vocabMemo">メモ・補足</div>
+        </td>
+        <td colspan="2" class="prc">
+          <div class="prac" id="prac">練習</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n1"><?=num1 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v1"><?=voc1 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText1" list="list" placeholder="" meanText="0" tabindex="2"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText1" vmText="1" tabindex="3"><?=vocMemo1 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc1 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="32"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n2"><?=num2 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v2"><?=voc2 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText2" list="list" placeholder="" meanText="1" tabindex="4"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText2" vmText="2" tabindex="5"><?=vocMemo2 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc2 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="33"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n3"><?=num3 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v3"><?=voc3 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText3" list="list" placeholder="" meanText="2" tabindex="6"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText3" vmText="3" tabindex="7"><?=vocMemo3 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc3 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="34"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n4"><?=num4 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v4"><?=voc4 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText4" list="list" placeholder="" meanText="3" tabindex="8"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText4" vmText="4" tabindex="9"><?=vocMemo4 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc4 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="35"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n5"><?=num5 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v5"><?=voc5 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText5" list="list" placeholder="" meanText="4" tabindex="10"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText5" vmText="5" tabindex="11"><?=vocMemo5 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc5 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="36"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n6"><?=num6 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v6"><?=voc6 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText6" list="list" placeholder="" meanText="5" tabindex="12"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText6" vmText="6" tabindex="13"><?=vocMemo6 ?></textarea></div>
+        </td>        
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc6 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="37"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n7"><?=num7 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v7"><?=voc7 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText7" list="list" placeholder="" meanText="6" tabindex="14"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText7" vmText="7" tabindex="15"><?=vocMemo7 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc7 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="38"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n8"><?=num8 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v9"><?=voc8 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText8" list="list" placeholder="" meanText="7" tabindex="16"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText8" vmText="8" tabindex="17"><?=vocMemo8 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc8 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="39"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n8"><?=num9 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v9"><?=voc9 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText9" list="list" placeholder="" meanText="8" tabindex="18"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText9" vmText="9" tabindex="19"><?=vocMemo9 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc9 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="40"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n10"><?=num10 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v10"><?=voc10 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText10" list="list" placeholder="" meanText="9" tabindex="20"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText10" vmText="10" tabindex="21"><?=vocMemo10 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc10 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="41"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n11"><?=num11 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v11"><?=voc11 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText11" list="list" placeholder="" meanText="10" tabindex="22"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText11" vmText="11" tabindex="23"><?=vocMemo11 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc11 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="42"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n12"><?=num12 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v12"><?=voc12 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText12" list="list" placeholder="" meanText="11" tabindex="24"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText12" vmText="12" tabindex="25"><?=vocMemo12 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc12 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="43"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n13"><?=num13 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v13"><?=voc13 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText13" list="list" placeholder="" meanText="12" tabindex="26"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText13" vmText="13" tabindex="27"><?=vocMemo13 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc13 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="44"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n14"><?=num14 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v14"><?=voc14 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText14" list="list" placeholder="" meanText="13" tabindex="28"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText14" vmText="14" tabindex="29"><?=vocMemo14 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc14 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="45"></input></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="num">
+          <div id="n15"><?=num15 ?></div>
+        </td>
+        <td class="voc">
+          <div id="v15"><?=voc15 ?></div>
+        </td>
+        <td class="mean">
+          <div id="m1"><input class="meanText" id="meanText15" list="list" placeholder="" meanText="14" tabindex="30"></input></div>
+        </td>
+        <td class="vocMemo">
+          <div id="vm1"><textarea class="vmText" id="vmText15" vmText="15" tabindex="31"><?=vocMemo15 ?></textarea></div>
+        </td>
+        <td class="prc">
+          <div class="prc1" id="prc"><?=prc15 ?></div>
+        </td>
+        <td class="prc">
+          <div id="prc"><input type="text" class="prcText" tabindex="46"></input></div>
+        </td>
+      </tr>
+
+      <!-- 単語リスト -->
+      <datalist id="list">
+        <option id="list1" list="0" value=""></option>
+        <option id="list2" list="1" value=""></option>
+        <option id="list3" list="2" value=""></option>
+        <option id="list4" list="3" value=""></option>
+        <option id="list5" list="4" value=""></option>
+        <option id="list6" list="5" value=""></option>
+        <option id="list7" list="6" value=""></option>
+        <option id="list8" list="7" value=""></option>
+        <option id="list9" list="8" value=""></option>
+        <option id="list10" list="9" value=""></option>
+        <option id="list11" list="10" value=""></option>
+        <option id="list12" list="11" value=""></option>
+        <option id="list13" list="12" value=""></option>
+        <option id="list14" list="13" value=""></option>
+        <option id="list15" list="14" value=""></option>
+      </datalist>
+    </table>
+    <br>
+
+    <!-- 記録ボンタン -->
+    <div>
+      <input class="rButton" id="rButton2" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+
+    <!-- タイピング練習 -->
+    <div class="cGameTimer" id="iGameTimer">制限時間：60秒</div>
+    <div class="container1" id="container1">
+      <div class="cTimer" id="iTimer">30秒経つと次の問題になります。</div>
+      <div class="cTypeDisplay" id="iTypeDisplay">ここに問題が表示されます。</div>
+      <textarea class="cTypeInput" id="iTypeInput">「タイピング（★のみ出題）」か「選択肢（全語彙から出題）」かを選んで練習してください。</textarea>
+      <div class="cTButton" id="iTButton">
+        <button class="cChoice" id="iChoice1" choice="1">選択肢１</button>
+        <button class="cChoice" id="iChoice2" choice="2">選択肢２</button>
+        <button class="cChoice" id="iChoice3" choice="3">選択肢３</button>
+        <button class="cChoice" id="iChoice4" choice="4">選択肢４</button>
+        <button class="cChoice" id="iChoice5" choice="5">選択肢５</button>
+        <button class="cChoice" id="iChoice6" choice="6">選択肢６</button>
+        <button class="cChoice" id="iChoice7" choice="7">選択肢７</button>
+        <button class="cChoice" id="iChoice8" choice="8">選択肢８</button>
+        <button class="cChoice" id="iChoice9" choice="9">選択肢９</button>
+        <button class="cChoice" id="iChoice10" choice="10">選択肢10</button>
+        <button class="cChoice" id="iChoice11" choice="11">選択肢11</button>
+      </div>
+      <div class="cTSelector" id="iTSelector"></div>
+      <button class="tSelector" id="iTypingButton">タイピング（★のみ出題）</button>
+      <button class="tSelector" id="iChoiceButton">選択肢（全語彙から出題）</button>
+      <!-- <button class="nothing" id="iRestart">リスタート</button> -->
+      <div class="cAnswer" id="iAnswer">正しくタイプされると，ここに赤文字で表示されます。間違っていると薄黄緑色で表示されます。</div> 
+    </div>
+    <table class="typingTable" id="typingTable">
+      <tr>
+        <td class="times">
+          <div class="cTimes" id="iTime">回</div>
+        </td>
+        <td class="date">
+          <div class="cDate" id="iDate">日付</div>
+        </td>
+        <td class="score">
+          <div class="cScore" id="iScore">正解数</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="times">
+          <div id="times1">１</div>
+        </td>
+        <td class="date">
+          <div id="date1"><?= date1?></div>
+        </td>
+        <td class="score">
+          <div id="score1"><?= score1?></div>
+        </td>
+      </tr>
+       <tr>
+        <td class="times">
+          <div id="times2">２</div>
+        </td>
+        <td class="date">
+          <div id="date2"><?= date2?></div>
+        </td>
+        <td class="score">
+          <div id="score2"><?= score2?></div>
+        </td>
+      </tr>
+       <tr>
+        <td class="times">
+          <div id="times3">３</div>
+        </td>
+        <td class="date">
+          <div id="date3"><?= date3?></div>
+        </td>
+        <td class="score">
+          <div id="score3"><?= score3?></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="times">
+          <div id="times4">４</div>
+        </td>
+        <td class="date">
+          <div id="date4"><?= date4?></div>
+        </td>
+        <td class="score">
+          <div id="score4"><?= score4?></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="times">
+          <div id="times5">５</div>
+        </td>
+        <td class="date">
+          <div id="date5"><?= date5?></div>
+        </td>
+        <td class="score">
+          <div id="score5"><?= score5?></div>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <div>
+      <input class="rButton" id="rButton2" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+    <div class="header" id="lHeader">【Let's Check!】読解していこう！</div>
+    <p class="p" id="p">
+    １．教科書 p.<?=page ?> で，【Vocabulary】の表に出てきた単語や熟語に
+    <img src="https://drive.google.com/uc?id=1H-ecDnDlDNI3gOWZn7IthaS4VX39LYbJ" width="50" height="15" alt="波線">
+    を引く。（不安な単語は意味も）
+    <br>
+    ２．教科書 p.<?=page ?> で，【 <?=grammar ?> 】に☆を付ける。
+    <br>
+    ３．本文を読み取って，内容を確認する。
+    </p>
+    <table class="lCTable" id="lCTable">
+      <tr>
+        <td class="lCE">
+          <div class="letsCheckE" id="letsCheckE">英語</div>
+        </td>
+        <td class="lCJ">
+          <div class="letsCheckJ" id="letsCheckJ">日本語</div>
+        </td>
+        <td class="tf">
+          <div class="tfH" id="tf">正誤</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="lCE">
+          <div id="lCE1"><?=lCE1 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText1"><div id="lCJ1"><?=lCJ1a ?><input class="lCText" id="lCText1" list="listL" placeholder="" lCText="0" tabindex="47"></input><?=lCJ1b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf1" tf="0"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="lCE">
+          <div id="lCE2"><?=lCE2 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText2"><div id="lCJ2"><?=lCJ2a ?><input class="lCText" id="lCText2" list="listL" placeholder="" lCText="1" tabindex="48"></input><?=lCJ2b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf2" tf="1"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="lCE">
+          <div id="lCE3"><?=lCE3 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText3"><div id="lCJ3"><?=lCJ3a ?><input class="lCText" id="lCText3" list="listL" placeholder="" lCText="2" tabindex="49"></input><?=lCJ3b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf3" tf="2"></div>
+        </td>
+      </tr>    
+      <tr>
+        <td class="lCE">
+          <div id="lCE4"><?=lCE4 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText4"><div id="lCJ4"><?=lCJ4a ?><input class="lCText" id="lCText4" list="listL" placeholder="" lCText="3" tabindex="50"></input><?=lCJ4b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf4" tf="3"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE5"><?=lCE5 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText5"><div id="lCJ5"><?=lCJ5a ?><input class="lCText" id="lCText5" list="listL" placeholder="" lCText="4" tabindex="51"></input><?=lCJ5b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf5" tf="4"></div>
+        </td>
+      </tr>  
+      <tr>
+        <td class="lCE">
+          <div id="lCE6"><?=lCE6 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText6"><div id="lCJ6"><?=lCJ6a ?><input class="lCText" id="lCText6" list="listL" placeholder="" lCText="5" tabindex="52"></input><?=lCJ6b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf6" tf="5"></div>
+        </td>
+      </tr>     
+      <tr>
+        <td class="lCE">
+          <div id="lCE7"><?=lCE7 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText7"><div id="lCJ7"><?=lCJ7a ?><input class="lCText" id="lCText7" list="listL" placeholder="" lCText="6" tabindex="53"></input><?=lCJ7b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf7" tf="6"></div>
+        </td>
+      </tr>  
+      <tr>
+        <td class="lCE">
+          <div id="lCE8"><?=lCE8 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText8"><div id="lCJ8"><?=lCJ8a ?><input class="lCText" id="lCText8" list="listL" placeholder="" lCText="7" tabindex="54"></input><?=lCJ8b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf8" tf="7"></div>
+        </td>
+      </tr>  
+      <tr>
+        <td class="lCE">
+          <div id="lCE9"><?=lCE9 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText9"><div id="lCJ9"><?=lCJ9a ?><input class="lCText" id="lCText9" list="listL" placeholder="" lCText="8" tabindex="55"></input><?=lCJ9b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf9" tf="8"></div>
+        </td>
+      </tr>    
+      <tr>
+        <td class="lCE">
+          <div id="lCE10"><?=lCE10 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText10"><div id="lCJ10"><?=lCJ10a ?><input class="lCText" id="lCText10" list="listL" placeholder="" lCText="9" tabindex="56"></input><?=lCJ10b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf10" tf="9"></div>
+        </td>
+      </tr>  
+      <tr>
+        <td class="lCE">
+          <div id="lCE11"><?=lCE11 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText11"><div id="lCJ11"><?=lCJ11a ?><input class="lCText" id="lCText11" list="listL" placeholder="" lCText="10" tabindex="57"></input><?=lCJ11b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf11" tf="10"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE12"><?=lCE12 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText12"><div id="lCJ12"><?=lCJ12a ?><input class="lCText" id="lCText12" list="listL" placeholder="" lCText="11" tabindex="58"></input><?=lCJ12b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf12" tf="11"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE13"><?=lCE13 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText13"><div id="lCJ13"><?=lCJ13a ?><input class="lCText" id="lCText13" list="listL" placeholder="" lCText="12" tabindex="59"></input><?=lCJ13b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf13" tf="12"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE14"><?=lCE14 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText14"><div id="lCJ14"><?=lCJ14a ?><input class="lCText" id="lCText14" list="listL" placeholder="" lCText="13" tabindex="60"></input><?=lCJ14b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf14" tf="13"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE15"><?=lCE15 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText15"><div id="lCJ15"><?=lCJ15a ?><input class="lCText" id="lCText15" list="listL" placeholder="" lCText="14" tabindex="61"></input><?=lCJ15b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf15" tf="14"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE16"><?=lCE16 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText16"><div id="lCJ16"><?=lCJ16a ?><input class="lCText" id="lCText16" list="listL" placeholder="" lCText="15" tabindex="62"></input><?=lCJ16b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf16" tf="15"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE17"><?=lCE17 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText17"><div id="lCJ17"><?=lCJ17a ?><input class="lCText" id="lCText17" list="listL" placeholder="" lCText="16" tabindex="63"></input><?=lCJ17b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf17" tf="16"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE18"><?=lCE18 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText18"><div id="lCJ18"><?=lCJ18a ?><input class="lCText" id="lCText18" list="listL" placeholder="" LCText="17" tabindex="64"></input><?=lCJ18b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf18" tf="17"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE19"><?=lCE19 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText19"><div id="lCJ19"><?=lCJ19a ?><input class="lCText" id="lCText19" list="listL" placeholder="" lCText="18" tabindex="65"></input><?=lCJ19b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf19" tf="18"></div>
+        </td>
+      </tr> 
+      <tr>
+        <td class="lCE">
+          <div id="lCE20"><?=lCE20 ?></div>
+        </td>
+        <td class="lCJ">
+          <label for="lCText20"><div id="lCJ20"><?=lCJ20a ?><input class="lCText" id="lCText20" list="listL" placeholder="" lCText="19" tabindex="66"></input><?=lCJ20b ?></div></label>
+        </td>
+        <td class="tf">
+          <div id="tf20" tf="19"></div>
+        </td>
+      </tr> 
+      <datalist id="listL">
+        <option id="listL1" listL="0" value=""></option>
+        <option id="listL2" listL="1" value=""></option>
+        <option id="listL3" listL="2" value=""></option>
+        <option id="listL4" listL="3" value=""></option>
+        <option id="listL5" listL="4" value=""></option>
+        <option id="listL6" listL="5" value=""></option>
+        <option id="listL7" listL="6" value=""></option>
+        <option id="listL8" listL="7" value=""></option>
+        <option id="listL9" listL="8" value=""></option>
+        <option id="listL10" listL="9" value=""></option>
+        <option id="listL11" listL="10" value=""></option>
+        <option id="listL12" listL="11" value=""></option>
+        <option id="listL13" listL="12" value=""></option>
+        <option id="listL14" listL="13" value=""></option>
+        <option id="listL15" listL="14" value=""></option>
+        <option id="listL16" listL="15" value=""></option>
+        <option id="listL17" listL="16" value=""></option>
+        <option id="listL18" listL="17" value=""></option>
+        <option id="listL19" listL="18" value=""></option>
+        <option id="listL20" listL="19" value=""></option>
+      </datalist>
+    </table>
+    <div><button class="tfButton" id="tfButton">正誤判定</div>
+    <p class="p" id="p1">＜メモ・今日の内容を簡単に・重要だと思うこと＞<textarea class="memo" id="memo1" tabindex="67"><?=lCMemo ?></textarea></p>
+    <br>
+    <div>
+      <input class="rButton" id="rButton3" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+     <div class="header" id="qHeader">【確認問題】</div>
+      <div class="container2">
+        <div class="checkQ" id="checkQ">確認問題（指示された方に取り組んでください。）</div>
+        <button class="checkChoice" id="checkSChoice1" checkSChoice="1">①</button>
+        <button class="checkChoice" id="checkSChoice2" checkSChoice="2">②</button>
+        <button class="checkChoice" id="checkSChoice3" checkSChoice="3">③</button>
+      <div class="checkButton" id="checkButton">
+        <button class="checkChoice" id="checkChoice1" checkChoice="1">選択肢１</button>
+        <button class="checkChoice" id="checkChoice2" checkChoice="2">選択肢２</button>
+        <button class="checkChoice" id="checkChoice3" checkChoice="3">選択肢３</button>
+      </div>
+    </div>
+    <br><br>
+    <div>
+      <input class="rButton" id="rButton4" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+    <div class="header" id="qHeader">【Questions（問題）】もう１度本文を読んで，問題に答えよう！</div>
+    <p class="p" id="p2">
+      <div class="questions" id="qQ1"><?=qQ1 ?></div>
+      <label for="qAText1"><div class="questionsA" id="qA1">　― <?=qA1a ?><textarea class="qAText" id="qAText1" tabindex="68"><?=qAText1 ?></textarea><?=qA1b ?></div></label>
+      <div class="questions" id="qQ2"><?=qQ2 ?></div>
+      <label for="qAText2"><div class="questionsA" id="qA2">　― <?=qA2a ?><textarea class="qAText" id="qAText2" tabindex="69"><?=qAText2 ?></textarea><?=qA2b ?></div></label>
+      <div class="questions" id="qQ3"><?=qQ3 ?></div>
+      <label for="qAText3"><div class="questionsA" id="qA3">　― <?=qA3a ?><textarea class="qAText" id="qAText3" tabindex="70"><?=qAText3 ?></textarea><?=qA3b ?></div></label>
+      <div class="questions" id="qQ4"><?=qQ4 ?></div>
+      <label for="qAText4"><div class="questionsA" id="qA4">　― <?=qA4a ?><textarea class="qAText" id="qAText4" tabindex="71"><?=qAText4 ?></textarea><?=qA4b ?></div></label>
+      <div class="questions" id="qQ5"><?=qQ5 ?></div>
+      <label for="qAText5"><div class="questionsA" id="qA5">　― <?=qA5a ?><textarea class="qAText" id="qAText5" tabindex="72"><?=qAText5 ?></textarea><?=qA5b ?></div></label>
+      <div class="questions" id="qQ6"><?=qQ6 ?></div>
+      <label for="qAText6"><div class="questionsA" id="qA6">　― <?=qA6a ?><textarea class="qAText" id="qAText6" tabindex="73"><?=qAText6 ?></textarea><?=qA6b ?></div></label>
+      <!-- <input type="text" id="flickInput">
+      <div class="flick">
+        <ul class="flick-list">
+          <li class="flick-median">あ</li>
+          <li class="flick-left">い</li>
+          <li class="flick-top">う</li>
+          <li class="flick-right">え</li>
+          <li class="flick-bottom">お</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">か</li>
+          <li class="flick-left">き</li>
+          <li class="flick-top">く</li>
+          <li class="flick-right">け</li>
+          <li class="flick-bottom">こ</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">さ</li>
+          <li class="flick-left">し</li>
+          <li class="flick-top">す</li>
+          <li class="flick-right">せ</li>
+          <li class="flick-bottom">そ</li>
+        </ul>
+        <br>
+        <ul class="flick-list">
+          <li class="flick-median">た</li>
+          <li class="flick-left">ち</li>
+          <li class="flick-top">つ</li>
+          <li class="flick-right">て</li>
+          <li class="flick-bottom">と</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">な</li>
+          <li class="flick-left">に</li>
+          <li class="flick-top">ぬ</li>
+          <li class="flick-right">ね</li>
+          <li class="flick-bottom">の</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">は</li>
+          <li class="flick-left">ひ</li>
+          <li class="flick-top">ふ</li>
+          <li class="flick-right">へ</li>
+          <li class="flick-bottom">ほ</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">ま</li>
+          <li class="flick-left">み</li>
+          <li class="flick-top">む</li>
+          <li class="flick-right">め</li>
+          <li class="flick-bottom">も</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">や</li>
+          <li class="flick-left"></li>
+          <li class="flick-top">ゆ</li>
+          <li class="flick-right"></li>
+          <li class="flick-bottom">よ</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">ら</li>
+          <li class="flick-left">り</li>
+          <li class="flick-top">る</li>
+          <li class="flick-right">れ</li>
+          <li class="flick-bottom">ろ</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">わ</li>
+          <li class="flick-left"></li>
+          <li class="flick-top">を</li>
+          <li class="flick-right"></li>
+          <li class="flick-bottom">ん</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">ゃ</li>
+          <li class="flick-left">っ</li>
+          <li class="flick-top">ゅ</li>
+          <li class="flick-right">ヴ</li>
+          <li class="flick-bottom">ょ</li>
+        </ul>
+        <ul class="flick-list">
+          <li class="flick-median">゛</li>
+          <li class="flick-left">゜</li>
+          <li class="flick-top">，</li>
+          <li class="flick-right">、</li>
+          <li class="flick-bottom">ー</li>
+        </ul>
+      </div> -->
+    </p>  
+    <p class="p" id="p3">＜メモ・どこが自分にとって難しいか・重要だと思うこと＞<textarea class="memo" id="memo2" tabindex="74"><?=qMemo ?></textarea></p>
+    <br>
+    <div>
+      <input class="rButton" id="rButton4" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+    <div class="header" id="gHeader">【Grammar（文法）】今回の文法を使って作文してみよう！</div>
+    <table class="gPTable" id="gPTable">
+      <tr>
+        <td colspan="2" class="gPH">
+          <div class="gPHeader" id="gPHeader1"><?=gPH1 ?></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="gP">
+        <label for="gPText1"><div class="gPractice" id="gPE1"><?=gPE1a ?><textarea class="gPText" id="gPText1" tabindex="75"><?=gPText1 ?></textarea><?=gPE1b ?></div></label>
+        </td>
+        <td class="gP">
+        <label for="gPText2"><div class="gPractice" id="gPJ1"><?=gPJ1a ?><textarea class="gPText" id="gPText2" tabindex="76"><?=gPText2 ?></textarea><?=gPJ1b ?></div></label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="gPH">
+          <div class="gPHeader" id="gPHeader2"><?=gPH2 ?></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="gP">
+        <label for="gPText3"><div class="gPractice" id="gPE2"><?=gPE2a ?><textarea class="gPText" id="gPText3" tabindex="77"><?=gPText3 ?></textarea><?=gPE2b ?></div></label>
+        </td>
+        <td class="gP">
+        <label for="gPText4"><div class="gPractice" id="gPJ2"><?=gPJ2a ?><textarea class="gPText" id="gPText4" tabindex="78"><?=gPText4 ?></textarea><?=gPJ2b ?></div></label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="gPH">
+          <div class="gPHeader" id="gPHeader1"><?=gPH3 ?></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="gP">
+        <label for="gPText5"><div class="gPractice" id="gPE3"><?=gPE3a ?><textarea class="gPText" id="gPText5" tabindex="79"><?=gPText5 ?></textarea><?=gPE3b ?></div></label>
+        </td>
+        <td class="gP">
+        <label for="gPText6"><div class="gPractice" id="gPJ3"><?=gPJ3a ?><textarea class="gPText" id="gPText6" tabindex="80"><?=gPText6 ?></textarea><?=gPJ3b ?></div></label>
+        </td>
+      </tr>      
+    </table>
+    <p class="p" id="p4">＜メモ・どこが自分にとって難しいか・重要だと思うこと＞<textarea class="memo" id="memo3" tabindex="81"><?=gPMemo ?></textarea></p>
+    <br>
+    <div>
+      <input class="rButton" id="rButton5" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <br><br>
+    <div class="header" id="qHeader">【本日の振り返り】</div>
+    <div class="container2">
+      <div class="dailyTime" id="dailyTime">1回目の振り返り</div>
+      <div class="cJQ" id="iJQ">問題文</div>
+      <div class="cJQbutton" id="iJQbutton">
+      <button class="cJQChoice" id="iJQChoice1" JQchoice="1">選択肢１</button>
+      <button class="cJQChoice" id="iJQChoice2" JQchoice="2">選択肢２</button>
+      <button class="cJQChoice" id="iJQChoice3" JQchoice="3">選択肢３</button>
+      <button class="cJQChoice" id="iJQChoice4" JQchoice="4">選択肢４</button>
+      <button class="cJQChoice" id="iJQChoice5" JQchoice="5">選択肢５</button>
+      </div>
+      <div class="cTSelector" id="iTSelector"></div>
+      <button class="tSelector" id="iStartButton">振り返りを始める</button>
+    </div>
+    <table class="typingTable" id="typingTable">
+      <tr>
+        <td class="times">
+          <div class="cTimes" id="iTime">回</div>
+        </td>
+        <td class="date">
+          <div class="cDate" id="iDate">日付</div>
+        </td>
+        <td class="score">
+          <div class="cScore" id="iScore">正解数</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="times">
+          <div id="times1">①</div>
+        </td>
+        <td class="date">
+          <div id="date11"><?= date11?></div>
+        </td>
+        <td class="score">
+          <div id="score11"><?= score11?></div>
+        </td>
+      </tr>
+       <tr>
+        <td class="times">
+          <div id="times2">②</div>
+        </td>
+        <td class="date">
+          <div id="date22"><?= date22?></div>
+        </td>
+        <td class="score">
+          <div id="score22"><?= score22?></div>
+        </td>
+      </tr>
+       <tr>
+        <td class="times">
+          <div id="times3">③</div>
+        </td>
+        <td class="date">
+          <div id="date33"><?= date33?></div>
+        </td>
+        <td class="score">
+          <div id="score33"><?= score33?></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="times">
+          <div id="times4">④</div>
+        </td>
+        <td class="date">
+          <div id="date44"><?= date44?></div>
+        </td>
+        <td class="score">
+          <div id="score44"><?= score44?></div>
+        </td>
+      </tr>
+    </table>
+    <br><br>
+    <div class="header" id="rHeader">【Reflection（ふりかえり）】このPartの学習をふりかえろう！</div>
+    <table class="rTable" id="rTable">
+      <tr>
+        <td class="rH">
+          <div class="rHeader" id="rHeader1">あなたに説明してもらうこと</div>
+        </td>
+        <td class="rH">
+          <div class="rHeader" id="rHeader2">あなたの説明（なるべく【ひとこと】で）</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="reflection">
+        <label for="rText1"><div class="r" id="r1"><?=r1a ?><input class="rText1" id="rText1" list="listR" placeholder="" rText="0" tabindex="82"></input><?=r1b ?></div></label>
+        </td>
+        <td class="reflection">
+        <label for="rText2"><div class="r" id="r2">１．<textarea class="rText2" id="rText2" rText="1" tabindex="83"></textarea></div></label>
+        </td>
+      </tr>
+      <tr>
+        <td class="reflection">
+        <label for="rText3"><div class="r" id="r3"><?=r2a ?><input class="rText1" id="rText3" list="listR" placeholder="" rText="2" tabindex="84"></input><?=r2b ?></div></label>
+        </td>
+        <td class="reflection">
+        <label for="rText4"><div class="r" id="r4">２．<textarea class="rText2" id="rText4" rText="3" tabindex="85"></textarea></div></label>
+        </td>
+        <datalist id="listR">
+          <option id="listR1" listR="0" value=""></option>
+          <option id="listR2" listR="1" value=""></option>
+          <option id="listR3" listR="2" value=""></option>
+          <option id="listR4" listR="3" value=""></option>
+          <option id="listR5" listR="4" value=""></option>
+          <option id="listR6" listR="5" value=""></option>
+          <option id="listR7" listR="6" value=""></option>
+          <option id="listR8" listR="7" value=""></option>
+          <option id="listR9" listR="8" value=""></option>
+          <option id="listR10" listR="9" value=""></option>
+          <option id="listR11" listR="10" value=""></option>
+          <option id="listR12" listR="11" value=""></option>
+          <option id="listR13" listR="12" value=""></option>
+          <option id="listR14" listR="13" value=""></option>
+          <option id="listR15" listR="14" value=""></option>
+        </datalist>
+      </tr>
+      <tr>
+        <td class="reflection">
+        <div class="r1" id="r5"><?=r3 ?></div>
+        </td>
+        <td class="reflection">
+        <label for="rText5"><div class="r" id="r6">３．<textarea class="rText2" id="rText5" rText="4" tabindex="86"></textarea></div></label>
+        </td>
+      </tr>
+      <tr>
+        <td class="reflection">
+        <div class="r1" id="r7"><?=r4 ?></div>
+        </td>
+        <td class="reflection">
+        <label for="rText6"><div class="r" id="r8">４．<textarea class="rText2" id="rText6" rText="5" tabindex="87"></textarea></div></label>
+        </td>
+      </tr>
+      <tr>
+        <td class="reflection">
+        <div class="r1" id="r9"><?=r5 ?></div>
+        </td>
+        <td class="reflection">
+        <label for="rText7"><div class="r" id="r10">５．<textarea class="rText2" id="rText7" rText="6" tabindex="88"></textarea></div></label>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <div>
+      <input class="rButton" id="rButton6" type="button" onClick="addBtnClick()" value="記録する">
+    </div> 
+    <!-- ページ内遷移ここから -->
+    <?var url = getAppUrl();?>
+  </body>
+
+  <script>
+    "use strict";
+
+    // window.addEventListener('beforeunload', (event) => {
+    // // Cancel the event as stated by the standard.
+    // event.preventDefault();
+    // // Chrome requires returnValue to be set.
+    // event.returnValue = '';
+    // });
+    window.onbeforeunload = function(e) {
+    addBtnClick4()
+    return "「記録」しましたか？"; // Google Chrome以外
+    e.returnValue = "「記録」しましたか？"; // Google Chrome
+    }
+
+    // Enterを押せないようにする
+    $(function () {
+    $('.qAText')
+        // cancelEnterとついたクラスにkeydownイベントを付与
+        .on('keydown', function (e) {
+            // e.key == 'Enter'でエンターキーが押された場合の条件を設定
+            if (e.key == 'Enter') {
+                // 何もせずに処理を終える
+                return false;
+            }
+        })
+    });
+    $(function () {
+    $('.gPText')
+        // cancelEnterとついたクラスにkeydownイベントを付与
+        .on('keydown', function (e) {
+            // e.key == 'Enter'でエンターキーが押された場合の条件を設定
+            if (e.key == 'Enter') {
+                // 何もせずに処理を終える
+                return false;
+            }
+        })
+    });
+
+    // PINコードが正しくないとき
+    if (document.getElementById("lesson").innerText == "PINコードが正しくありません") {
+      document.getElementById("goals").style.display = "none";
+      document.getElementById("docHead").style.display = "none";
+      document.getElementById("docTable").style.display = "none";
+      document.getElementById("header").style.display = "none";
+      document.getElementById("frameTable").style.display = "none";
+      document.getElementById("vHeader").style.display = "none";
+      document.getElementById("vocTable").style.display = "none";
+      document.getElementById("lHeader").style.display = "none";
+      document.getElementById("qHeader").style.display = "none";
+      document.getElementById("gHeader").style.display = "none";     
+      document.getElementById("rHeader").style.display = "none";
+      document.getElementById("p").style.display = "none";
+      document.getElementById("iGameTimer").style.display = "none";
+      document.getElementById("container1").style.display = "none";
+      document.getElementById("rButton").style.display = "none";
+      document.body.style.overflowY = 'hidden';
+      document.getElementById("image_place").src = "https://drive.google.com/uc?id=1_O4EAcEO8vympJeFLkjqXbSsbyLtOzqC";
+      document.getElementById("rButton2").style.display = "none";
+      document.getElementById("rButton3").style.display = "none";
+      document.getElementById("rButton4").style.display = "none";
+      document.getElementById("rButton5").style.display = "none";
+      document.getElementById("rButton6").style.display = "none";
+      document.getElementById("lCTable").style.display = "none";
+      document.getElementById("memo1").style.display = "none";
+      document.getElementById("memo2").style.display = "none";
+      document.getElementById("memo3").style.display = "none";
+      document.getElementById("p1").style.display = "none";
+      document.getElementById("p2").style.display = "none";
+      document.getElementById("p3").style.display = "none";
+      document.getElementById("p4").style.display = "none";
+      document.getElementById("qA1").style.display = "none";
+      document.getElementById("qA2").style.display = "none";
+      document.getElementById("qA3").style.display = "none";
+      document.getElementById("qA4").style.display = "none";
+      document.getElementById("qA5").style.display = "none";
+      document.getElementById("gPTable").style.display = "none";
+      document.getElementById("rTable").style.display = "none";
+      document.getElementById("goal").innerText = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    };
+
+    // meanTextに選んだ意味を表示する //
+    const vocMean = <?= vocMean?>.split(",");
+    const $meanText = document.querySelectorAll("[meanText]");
+    const meanTextLength = $meanText.length;
+    for (let i = 0; i < meanTextLength; i++) {
+      if (vocMean[i] != null) {
+        $meanText[i].value = vocMean[i];
+      }
+    };
+
+    // meanTextに選択肢を付ける
+    const vocList = [];
+    let list = <?=vocQ ?>.split(/\r\n|\n/);
+    let list2 = list.sort();
+    const $meanTextList = document.querySelectorAll("[list]")
+    for (let i = 0; i < list2.length; i++) {
+      let cells = list2[i].split(",");
+      vocList.push(cells);
+      if (list2.length >= i + 1) {
+        $meanTextList[i].value = vocList[i];
+      }
+    };
+  
+    // Let's Check!に選んだものを表示する //
+    const lCT = <?=lCT ?>.split(",");
+    const $lCText = document.querySelectorAll("[lCText]");
+    const lCTextLength = $lCText.length;
+    for (let i = 0; i < lCTextLength; i++) {
+      if (lCT[i] != null) {
+        $lCText[i].value = lCT[i];
+      }
+    };
+
+    // Let's Check!に選択肢をつける
+    const lCList = [];
+    let list3 = <?=lCA ?>.split(/\r\n|\n/);
+    let list4 = list3.sort();
+    const $lCTextList = document.querySelectorAll("[listL]");
+    for (let i = 0; i < list4.length; i++) {
+      let cells2 = list4[i].split(",");
+      lCList.push(cells2);
+      if (list4.length >= i + 1) {
+        $lCTextList[i].value = lCList[i];
+      }
+    };
+
+    // 振り返りにに選んだものを表示する //
+    const rText = <?=rText ?>.split(",");
+    const $rText = document.querySelectorAll("[rText]");
+    const rTextLength = $rText.length;
+    for (let i = 0; i < rTextLength; i++) {
+      if (rText[i] != null) {
+        $rText[i].value = rText[i];
+      }
+    };
+    
+    // 振り返りに選択肢を付ける //
+    const rList = [];
+    let list5 = <?=vocR ?>.split(/\r\n|\n/);
+    let list6 = list5.sort();
+    const $rList = document.querySelectorAll("[listR]");
+    for (let i = 0; i < list6.length; i++) {
+      let cells3 = list6[i].split(",");
+      rList.push(cells3);
+      if (list6.length >= i + 1) {
+        $rList[i].value = String(rList[i]).replace("★", "");
+      }
+    };
+   
+    // 正誤判定
+    tfButton.addEventListener('click', () => {
+      const tfAnswer = <?=lCA ?>.split(/\r\n|\n/);
+      const $tf = document.querySelectorAll("[tf]");
+      for (let i = 0; i < tfAnswer.length; i++) {
+        if($lCText[i].value == tfAnswer[i] || tfAnswer[i] == null) {
+          $tf[i].textContent = "〇";
+        } else {
+          $tf[i].textContent = "×";
+        }
+      };
+    });
+
+  const typingJs = (() => {
+    
+    const $doc = document
+    const $typeInput = $doc.getElementById('iTypeInput');
+    const wordsList = [];
+    const choiceList = [];
+    const answerCheck = [];
+    const $typeDisplay = $doc.getElementById('iTypeDisplay');
+    const $answer = $doc.getElementById('iAnswer');
+    let score = 0;
+    let mistake = 0;
+    const $timer = $doc.getElementById('iTimer');
+    let startTime;
+    const $gameTimer = $doc.getElementById('iGameTimer');
+    let startGameTime;
+    let originGameTime = 60;
+    const rightSound = new Audio('https://drive.google.com/uc?id=1fJ7QAZIZd5KSlmdIXDTMirVIxfaTYdlu&.mp3');
+    const wrongSound = new Audio('https://drive.google.com/uc?id=16rqE0PIJfyT14wRDzS69iqUbnjxqHlN1&.mp3');
+    const questionSound = new Audio('https://drive.google.com/uc?id=1kGVXzXg3NtAuiCIF-WQ9wO7cvy4mDFSE&.mp3');
+    const clearSound = new Audio('https://drive.google.com/uc?id=1e4-VCizwl_odE__OvYQHRqAAgbYjQ9AF&.mp3');
+    const $typingButton = $doc.getElementById('iTypingButton')
+    const $choiceButton = $doc.getElementById('iChoiceButton')
+    // const $restart = $doc.getElementById('iRestart')
+        //今日の日付データを変数に格納
+    //変数は"today"とする
+    let today=new Date(); 
+    //年・月・日・曜日を取得
+    let year = today.getFullYear();
+    let month = today.getMonth()+1;
+    let week = today.getDay();
+    let day = today.getDate();
+    let week_ja= new Array("日","月","火","水","木","金","土");
+    //年・月・日・曜日を書き出す
+    let date = year+"/"+month+"/"+day+"("+week_ja[week]+")"
+
+    if (($doc.getElementById('date1').textContent == date) || ($doc.getElementById('date2').textContent == date) || ($doc.getElementById('date3').textContent == date) || ($doc.getElementById('date4').textContent == date)) {
+      $doc.getElementById('iChoice1').style.visibility = 'hidden';
+      $doc.getElementById('iChoice2').style.visibility = 'hidden';
+      $doc.getElementById('iChoice3').style.visibility = 'hidden';
+      $doc.getElementById('iChoice4').style.visibility = 'hidden';
+      $doc.getElementById('iChoice5').style.visibility = 'hidden';
+      $doc.getElementById('iChoice6').style.visibility = 'hidden';
+      $doc.getElementById('iChoice7').style.visibility = 'hidden';
+      $doc.getElementById('iChoice8').style.visibility = 'hidden';
+      $doc.getElementById('iChoice9').style.visibility = 'hidden';
+      $doc.getElementById('iChoice10').style.visibility = 'hidden';
+      $doc.getElementById('iChoice11').style.visibility = 'hidden';
+      $typingButton.classList.replace('tSelector', 'nothing');
+      $choiceButton.classList.replace('tSelector', 'nothing');
+      $typeInput.textContent = "本日はもう練習しました。次回また練習してください。"
+    } else {
+    const init = () => {
+      $doc.getElementById("iAnswer").style.color = 'black';
+      // $restart.classList.replace('cRestart', 'nothing');
+      // $start.classList.replace('nothing', 'cStart');
+      $typingButton.classList.replace('nothing', 'tSelector');
+      $choiceButton.classList.replace('nothing', 'tSelector');
+      $typeInput.readOnly = true;
+      $gameTimer.innerText = "制限時間：60秒";
+      $timer.innerText = "30秒経つと次の問題になります。";
+      $typeDisplay.innerText = "ここに問題が表示されます。";
+      $typeInput.value = "「タイピング（★のみ出題）」か「選択肢（全語彙から出題）」かを選んで練習してください。";
+      document.getElementById("iTButton").style.visibility = "hidden";
+      $doc.getElementById('iChoice1').style.visibility = 'hidden';
+      $doc.getElementById('iChoice2').style.visibility = 'hidden';
+      $doc.getElementById('iChoice3').style.visibility = 'hidden';
+      $doc.getElementById('iChoice4').style.visibility = 'hidden';
+      $doc.getElementById('iChoice5').style.visibility = 'hidden';
+      $doc.getElementById('iChoice6').style.visibility = 'hidden';
+      $doc.getElementById('iChoice7').style.visibility = 'hidden';
+      $doc.getElementById('iChoice8').style.visibility = 'hidden';
+      $doc.getElementById('iChoice9').style.visibility = 'hidden';
+      $doc.getElementById('iChoice10').style.visibility = 'hidden';
+      $doc.getElementById('iChoice11').style.visibility = 'hidden';
+    }
+    init();
+    }
+
+    iTypingButton.addEventListener('click', () => {
+
+        $doc.getElementById("iAnswer").style.color = 'transparent';
+        let originTime = 30;
+        $typingButton.classList.replace('tSelector', 'nothing');
+        $choiceButton.classList.replace('tSelector', 'nothing');
+        // $restart.classList.replace('nothing', 'cRestart');
+        // $restart.addEventListener('click', () => {
+        //     // window.location.reload();
+        //     getTimerTime = 'none';
+        //     getGameTimerTime = 'none';
+        //     init();
+        // });
+
+        // inputTypeをフォーカス，フォーカスされたらcssで枠を黒色に
+        $typeInput.focus();
+        $typeInput.readOnly = false;
+        
+        // 開始音
+        questionSound.play();
+        questionSound.currentTime = 0;
+
+        // $typeInputを空に
+        $typeInput.value = "";
+
+        // typingQuestions.txtを読み込む
+        // let questions = new XMLHttpRequest();
+        // questions.open('GET', 'txtPic/typingQuestions.txt', false);
+        // questions.send(null);
+        let lines = <?=vocQ2 ?>.split(/\r\n|\n/);
+        for (let i = 0; i < lines.length; i++) {
+        let cells = lines[i].split(",");
+            wordsList.push(cells);
+        }
+
+        // ランダムにwordを表示する
+        const rdWord = Math.floor(Math.random() * wordsList.length);
+        $typeDisplay.textContent = wordsList[rdWord];
+
+        let lines2 = <?= vocA2 ?>.split(/\r\n|\n/);
+        for (let i2 = 0; i2 < lines2.length; i2++) {
+        let cells2 = lines2[i2].split(",");
+            answerCheck.push(cells2);
+        }
+
+        // ランダムに表示したwordに対応したanswerを表示
+        $answer.textContent = answerCheck[rdWord];
+
+        // answerを分解してspanタグを付ける
+        let splitWord = $answer.textContent.split("");
+        splitWord.forEach((letter) => {
+            const letterSpan = $doc.createElement('span');
+            letterSpan.innerText = letter;
+            $answer.appendChild(letterSpan);
+        });
+
+        // spanタグが付いたanswerと入力されたものを比べる（準備）
+        $typeInput.addEventListener('input', () => {
+            // if ($typeInput.value.startsWith("a ")) {
+            //     $typeInput.value = "";
+            // }
+            const sentenceArray = $answer.querySelectorAll('span');
+            const arrayValue = $typeInput.value.split("");
+            // correct変数の定義（準備）
+            let correct = true;
+            // 入力されたものがあっていれば，correctを，そうでなければincorrectクラスを付与する
+            sentenceArray.forEach((spannedLetter, index) => {
+                if (arrayValue[index] == null) {
+                    spannedLetter.classList.remove('correct');
+                    spannedLetter.classList.remove('incorrect');
+                    correct = false;
+                }   else if (spannedLetter.innerText == arrayValue[index]) {
+                    spannedLetter.classList.add('correct');
+                    spannedLetter.classList.remove('incorrect');
+                } else {
+                    spannedLetter.classList.add('incorrect');
+                    spannedLetter.classList.remove('correct');
+                    // 不正解音
+                    wrongSound.play();
+                    wrongSound.currentTime = 0;
+                    wrongSound.volume = 0.5;
+                    mistake++;
+                    correct = false;
+                }
+            });
+            // correctなら，次のwordを表示する
+            if (correct == true) {
+                const rdWord2 = Math.floor(Math.random() * wordsList.length);
+                $typeDisplay.textContent = wordsList[rdWord2];
+                $answer.textContent = answerCheck[rdWord2];
+            // answerを１文字ずつ分解し，それぞれにspanタグを付ける
+            let splitWord2 = $answer.textContent.split("");
+                splitWord2.forEach((letter2) => {
+                const letterSpan2 = $doc.createElement('span');
+                letterSpan2.innerText = letter2;
+                $answer.appendChild(letterSpan2);
+                })
+            // $typeInputを空に
+            $typeInput.value = "";
+            startTimer();
+
+            // 正解音とscoreを加算
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score++;
+            }
+        });
+
+        // word当たりのタイマーの設定
+        startTimer();
+        function startTimer() {
+            $timer.innerText = originTime;
+            startTime = new Date();
+            setInterval(() => {
+                $timer.innerText = originTime - getTimerTime();   
+                if($timer.innerText <= 0) {
+                    timeUp();
+                }
+            }, 1000);
+        }
+        let getTimerTime = () => {
+            return Math.floor((new Date() - startTime) / 1000);
+        }
+        // timerのカウントが0になったとき
+        function timeUp() {
+            const rdWord3 = Math.floor(Math.random() * wordsList.length);
+            $typeDisplay.textContent = wordsList[rdWord3];
+            $answer.textContent = answerCheck[rdWord3];
+            let splitWord3 = $answer.textContent.split("");
+                splitWord3.forEach((letter3) => {
+                const letterSpan3 = $doc.createElement('span');
+                letterSpan3.innerText = letter3;
+                $answer.appendChild(letterSpan3);
+            })
+            $typeInput.value = "";
+            startTimer();
+            // 開始音
+            questionSound.play();
+            questionSound.currentTime = 0;
+        }
+        
+        startGameTimer();
+        function startGameTimer() {
+            $gameTimer.innerText = originGameTime;
+            startGameTime = new Date();
+            setInterval(() => {
+                $gameTimer.innerText = originGameTime - getGameTimerTime();   
+                if($gameTimer.innerText <= 0) {
+                    startTime = 'none';
+                    startGameTime = 'none';
+                    $typeDisplay.textContent = "NaN";
+                    gameTimeUp();
+                }
+            }, 1000);
+        }
+        let getGameTimerTime = () => {
+            return Math.floor((new Date() - startGameTime) / 1000);
+        }
+        
+        // gameTimerが0になったとき
+        function gameTimeUp() {
+            questionSound.pause();
+            questionSound.currentTime = 0;
+            rightSound.pause();
+            rightSound.currentTime = 0;
+            wrongSound.pause();
+            wrongSound.currentTime = 0;
+            clearSound.play();
+            clearSound.currentTime = 0;
+            let sum = score - mistake;
+            $typeInput.value = "１分間に，【　" + score + "　】問正解しました！\nタイプミス数は" + "【　" + mistake + "　】 回でした。\n得点は" + "【　" + sum + "　】（タイプ）です。\n【" + date + "】";
+            $typeInput.readOnly = true;
+            if ($doc.getElementById('date4').textContent != "") {
+              $doc.getElementById('date5').textContent = date;
+              $doc.getElementById('score5').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（ﾀｲﾌﾟ）";
+            } else if ($doc.getElementById('date3').textContent != "") {
+              $doc.getElementById('date4').textContent = date;
+              $doc.getElementById('score4').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（ﾀｲﾌﾟ）";
+            } else if ($doc.getElementById('date2').textContent != "") {
+              $doc.getElementById('date3').textContent = date;
+              $doc.getElementById('score3').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（ﾀｲﾌﾟ）";
+            } else if ($doc.getElementById('date1').textContent != "") {
+              $doc.getElementById('date2').textContent = date;
+              $doc.getElementById('score2').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（ﾀｲﾌﾟ）";
+            } else if ($doc.getElementById('date1').textContent != date) {
+              $doc.getElementById('date1').textContent = date;
+              $doc.getElementById('score1').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（ﾀｲﾌﾟ）";
+            }
+            addBtnClick4()
+            // $restart.classList.replace('nothing', 'cRestart');
+            // $restart.addEventListener('click', () => {
+            //     // window.location.reload();
+            //     init();
+            // });
+        };         
+    });
+
+
+    iChoiceButton.addEventListener('click', () => {
+
+      $doc.getElementById("iAnswer").style.color = 'transparent';
+      let originTime = 10;
+      $typingButton.classList.replace('tSelector', 'nothing');
+      $choiceButton.classList.replace('tSelector', 'nothing');
+      $doc.getElementById('iChoice1').style.visibility = 'visible';
+      $doc.getElementById('iChoice2').style.visibility = 'visible';
+      $doc.getElementById('iChoice3').style.visibility = 'visible';
+      $doc.getElementById('iChoice4').style.visibility = 'visible';
+      $doc.getElementById('iChoice5').style.visibility = 'visible';
+      $doc.getElementById('iChoice6').style.visibility = 'visible';
+      $doc.getElementById('iChoice7').style.visibility = 'visible';
+      $doc.getElementById('iChoice8').style.visibility = 'visible';
+      $doc.getElementById('iChoice9').style.visibility = 'visible';
+      $doc.getElementById('iChoice10').style.visibility = 'visible';
+      $doc.getElementById('iChoice11').style.visibility = 'visible';
+      $typeInput.readOnly = true;
+      
+      // $restart.classList.replace('nothing', 'cRestart');
+      // $restart.addEventListener('click', () => {
+      //     // window.location.reload();
+      //     getTimerTime = 'none';
+      //     getGameTimerTime = 'none';
+      //     init();
+      // });
+
+      // inputTypeをフォーカス，フォーカスされたらcssで枠を黒色に
+      $typeInput.focus();
+      // $typeInput.readOnly = false;
+      
+      // 開始音
+      questionSound.play();
+      questionSound.currentTime = 0;
+
+      // $typeInputを空に
+      $typeInput.value = "";
+
+      // typingQuestions.txtを読み込む
+      // let questions = new XMLHttpRequest();
+      // questions.open('GET', 'txtPic/typingQuestions.txt', false);
+      // questions.send(null);
+      let lines = <?= vocQ ?>.split(/\r\n|\n/);
+      for (let i = 0; i < lines.length; i++) {
+      let cells = lines[i].split(",");
+          wordsList.push(cells);
+      }
+      // let lines2 = <?= vocA ?>.split(/\r\n|\n/);
+      // for (let i2 = 0; i2 < lines2.length; i2++) {
+      // let cells2 = lines[i2].split(",");
+      //     choiceList.push(cells2);
+      // }
+      let lines3 = <?= vocR ?>.split(/\r\n|\n/);
+      for (let i3 = 0; i3 < lines3.length; i3++) {
+      let cells3 = lines3[i3].split(",");
+          answerCheck.push(cells3);
+      }
+
+      let rdWord = Math.floor(Math.random() * wordsList.length);
+
+      const setupQuiz = () => {
+      
+      // ランダムにwordを表示する
+      $typeDisplay.textContent = wordsList[rdWord];
+      // ランダムに表示したwordに対応したanswerを表示
+      $answer.textContent = answerCheck[rdWord];
+
+      const $button = $doc.querySelectorAll('[Choice]');
+      let rdChoiceList1 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList2 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList3 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList4 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList5 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList6 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList7 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList8 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList9 = Math.floor(Math.random() * answerCheck.length);
+      let rdChoiceList10 = Math.floor(Math.random() * answerCheck.length);
+      while ((rdChoiceList1 == rdChoiceList2) || (rdChoiceList1 == rdChoiceList3) || (rdChoiceList1 == rdChoiceList4) || (rdChoiceList1 == rdChoiceList5) || (rdChoiceList1 == rdChoiceList6) || (rdChoiceList1 == rdChoiceList7) || (rdChoiceList1 == rdChoiceList8) || (rdChoiceList1 == rdChoiceList9) || (rdChoiceList1 == rdChoiceList10) || (rdChoiceList2 == rdChoiceList3) || (rdChoiceList2 == rdChoiceList4) ||  (rdChoiceList2 == rdChoiceList5) ||  (rdChoiceList2 == rdChoiceList6) ||  (rdChoiceList2 == rdChoiceList7) || (rdChoiceList2 == rdChoiceList8) || (rdChoiceList2 == rdChoiceList9) || (rdChoiceList2 == rdChoiceList10) || (rdChoiceList3 == rdChoiceList4) || (rdChoiceList3 == rdChoiceList5) || (rdChoiceList3 == rdChoiceList6) || (rdChoiceList3 == rdChoiceList7) || (rdChoiceList3 == rdChoiceList8) || (rdChoiceList3 == rdChoiceList9) || (rdChoiceList3 == rdChoiceList10) || (rdChoiceList4 == rdChoiceList5) || (rdChoiceList4 == rdChoiceList6) || (rdChoiceList4 == rdChoiceList7) || (rdChoiceList4 == rdChoiceList8) || (rdChoiceList4 == rdChoiceList9) || (rdChoiceList4 == rdChoiceList10) || (rdChoiceList5 == rdChoiceList6) || (rdChoiceList5 == rdChoiceList7) || (rdChoiceList5 == rdChoiceList8) || (rdChoiceList5 == rdChoiceList9) || (rdChoiceList5 == rdChoiceList10) || (rdChoiceList6 == rdChoiceList7) || (rdChoiceList6 == rdChoiceList8) || (rdChoiceList6 == rdChoiceList9) || (rdChoiceList6 == rdChoiceList10) || (rdChoiceList7 == rdChoiceList8) || (rdChoiceList7 == rdChoiceList9) || (rdChoiceList7 == rdChoiceList10) || (rdChoiceList8 == rdChoiceList9) || (rdChoiceList8 == rdChoiceList10) || (rdChoiceList9 == rdChoiceList10)) {
+          rdChoiceList1 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList2 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList3 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList4 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList5 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList6 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList7 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList8 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList9 = Math.floor(Math.random() * answerCheck.length);
+          rdChoiceList10 = Math.floor(Math.random() * answerCheck.length);
+        }
+          $button[0].textContent = answerCheck[rdChoiceList1];
+          $button[1].textContent = answerCheck[rdChoiceList2];
+          $button[2].textContent = answerCheck[rdChoiceList3];
+          $button[3].textContent = answerCheck[rdChoiceList4];
+          $button[4].textContent = answerCheck[rdChoiceList5];
+          $button[5].textContent = answerCheck[rdChoiceList6];
+          $button[6].textContent = answerCheck[rdChoiceList7];
+          $button[7].textContent = answerCheck[rdChoiceList8];
+          $button[8].textContent = answerCheck[rdChoiceList9];
+          $button[9].textContent = answerCheck[rdChoiceList10];
+          $button[10].textContent = "この中に正解はない";
+        
+        }
+
+        setupQuiz();
+
+        const clickHandler = (e) => {
+
+          if ((($button[0].textContent == answerCheck[rdWord]) || ($button[1].textContent == answerCheck[rdWord]) || ($button[2].textContent == answerCheck[rdWord]) || ($button[3].textContent == answerCheck[rdWord]) || ($button[4].textContent == answerCheck[rdWord]) || ($button[5].textContent == answerCheck[rdWord]) || ($button[6].textContent == answerCheck[rdWord]) || ($button[7].textContent == answerCheck[rdWord]) || ($button[8].textContent == answerCheck[rdWord]) || ($button[9].textContent == answerCheck[rdWord]) || ($button[10].textContent == answerCheck[rdWord])) && (answerCheck[rdWord] == e.target.textContent)){ 
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score ++;
+            rdWord = Math.floor(Math.random() * wordsList.length);
+            setupQuiz();
+            startTimer();
+          } else if ((($button[0].textContent != answerCheck[rdWord]) && ($button[1].textContent != answerCheck[rdWord]) && ($button[2].textContent != answerCheck[rdWord]) && ($button[3].textContent != answerCheck[rdWord]) && ($button[4].textContent != answerCheck[rdWord]) && ($button[5].textContent != answerCheck[rdWord]) && ($button[6].textContent != answerCheck[rdWord]) && ($button[7].textContent != answerCheck[rdWord]) && ($button[8].textContent != answerCheck[rdWord]) && ($button[9].textContent != answerCheck[rdWord]) && ($button[10].textContent != answerCheck[rdWord])) && (e.target.textContent == "この中に正解はない")) {
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score++;
+            rdWord = Math.floor(Math.random() * wordsList.length);
+            setupQuiz();
+            startTimer();
+          } else {
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+            mistake++;
+            setupQuiz();
+            // window.alert('不正解😨');
+          //   const $button = $doc.querySelectorAll('[Choice]');
+          //   let rdChoiceList1 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList2 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList3 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList4 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList5 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList6 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList7 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList8 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList9 = Math.floor(Math.random() * answerCheck.length);
+          //   let rdChoiceList10 = Math.floor(Math.random() * answerCheck.length);
+          //   while ((rdChoiceList1 == rdChoiceList2) || (rdChoiceList1 == rdChoiceList3) || (rdChoiceList1 == rdChoiceList4) || (rdChoiceList1 == rdChoiceList5) || (rdChoiceList1 == rdChoiceList6) || (rdChoiceList1 == rdChoiceList7) || (rdChoiceList1 == rdChoiceList8) || (rdChoiceList1 == rdChoiceList9) || (rdChoiceList1 == rdChoiceList10) || (rdChoiceList2 == rdChoiceList3) || (rdChoiceList2 == rdChoiceList4) ||  (rdChoiceList2 == rdChoiceList5) ||  (rdChoiceList2 == rdChoiceList6) ||  (rdChoiceList2 == rdChoiceList7) || (rdChoiceList2 == rdChoiceList8) || (rdChoiceList2 == rdChoiceList9) || (rdChoiceList2 == rdChoiceList10) || (rdChoiceList3 == rdChoiceList4) || (rdChoiceList3 == rdChoiceList5) || (rdChoiceList3 == rdChoiceList6) || (rdChoiceList3 == rdChoiceList7) || (rdChoiceList3 == rdChoiceList8) || (rdChoiceList3 == rdChoiceList9) || (rdChoiceList3 == rdChoiceList10) || (rdChoiceList4 == rdChoiceList5) || (rdChoiceList4 == rdChoiceList6) || (rdChoiceList4 == rdChoiceList7) || (rdChoiceList4 == rdChoiceList8) || (rdChoiceList4 == rdChoiceList9) || (rdChoiceList4 == rdChoiceList10) || (rdChoiceList5 == rdChoiceList6) || (rdChoiceList5 == rdChoiceList7) || (rdChoiceList5 == rdChoiceList8) || (rdChoiceList5 == rdChoiceList9) || (rdChoiceList5 == rdChoiceList10) || (rdChoiceList6 == rdChoiceList7) || (rdChoiceList6 == rdChoiceList8) || (rdChoiceList6 == rdChoiceList9) || (rdChoiceList6 == rdChoiceList10) || (rdChoiceList7 == rdChoiceList8) || (rdChoiceList7 == rdChoiceList9) || (rdChoiceList7 == rdChoiceList10) || (rdChoiceList8 == rdChoiceList9) || (rdChoiceList8 == rdChoiceList10) || (rdChoiceList9 == rdChoiceList10)) {
+          //       rdChoiceList1 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList2 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList3 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList4 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList5 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList6 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList7 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList8 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList9 = Math.floor(Math.random() * answerCheck.length);
+          //       rdChoiceList10 = Math.floor(Math.random() * answerCheck.length);
+          //     }
+          //     $button[0].textContent = answerCheck[rdChoiceList1];
+          //     $button[1].textContent = answerCheck[rdChoiceList2];
+          //     $button[2].textContent = answerCheck[rdChoiceList3];
+          //     $button[3].textContent = answerCheck[rdChoiceList4];
+          //     $button[4].textContent = answerCheck[rdChoiceList5];
+          //     $button[5].textContent = answerCheck[rdChoiceList6];
+          //     $button[6].textContent = answerCheck[rdChoiceList7];
+          //     $button[7].textContent = answerCheck[rdChoiceList8];
+          //     $button[8].textContent = answerCheck[rdChoiceList9];
+          //     $button[9].textContent = answerCheck[rdChoiceList10];
+          //     $button[10].textContent = "この中に正解はない";      
+          }
+        }
+
+        const $button = $doc.querySelectorAll('[Choice]');
+        const buttonLength = $button.length;
+        let handlerIndex = 0;
+        while (handlerIndex < buttonLength){
+            $button[handlerIndex].addEventListener('click', (e) => {
+            clickHandler(e);
+            });
+            handlerIndex++;
+        }
+
+
+        // word当たりのタイマーの設定
+        startTimer();
+        function startTimer() {
+            $timer.innerText = originTime;
+            startTime = new Date();
+            setInterval(() => {
+                let getTimerTime = () => {
+                    return Math.floor((new Date() - startTime) / 1000);
+                }
+                $timer.innerText = originTime - getTimerTime();   
+                if($timer.innerText <= 0) {
+                    timeUp();
+                }
+            }, 1000);
+        }
+        // timerのカウントが0になったとき
+        function timeUp() {
+            rdWord = Math.floor(Math.random() * wordsList.length);
+            setupQuiz();
+            // const rdWord3 = Math.floor(Math.random() * wordsList.length);
+            // $typeDisplay.textContent = wordsList[rdWord3];
+            // $answer.textContent = answerCheck[rdWord3];
+            // let rdChoiceList1 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList2 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList3 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList4 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList5 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList6 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList7 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList8 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList9 = Math.floor(Math.random() * answerCheck.length);
+            // let rdChoiceList10 = Math.floor(Math.random() * answerCheck.length);
+            // while ((rdChoiceList1 == rdChoiceList2) || (rdChoiceList1 == rdChoiceList3) || (rdChoiceList1 == rdChoiceList4) || (rdChoiceList1 == rdChoiceList5) || (rdChoiceList1 == rdChoiceList6) || (rdChoiceList1 == rdChoiceList7) || (rdChoiceList1 == rdChoiceList8) || (rdChoiceList1 == rdChoiceList9) || (rdChoiceList1 == rdChoiceList10) || (rdChoiceList2 == rdChoiceList3) || (rdChoiceList2 == rdChoiceList4) ||  (rdChoiceList2 == rdChoiceList5) ||  (rdChoiceList2 == rdChoiceList6) ||  (rdChoiceList2 == rdChoiceList7) || (rdChoiceList2 == rdChoiceList8) || (rdChoiceList2 == rdChoiceList9) || (rdChoiceList2 == rdChoiceList10) || (rdChoiceList3 == rdChoiceList4) || (rdChoiceList3 == rdChoiceList5) || (rdChoiceList3 == rdChoiceList6) || (rdChoiceList3 == rdChoiceList7) || (rdChoiceList3 == rdChoiceList8) || (rdChoiceList3 == rdChoiceList9) || (rdChoiceList3 == rdChoiceList10) || (rdChoiceList4 == rdChoiceList5) || (rdChoiceList4 == rdChoiceList6) || (rdChoiceList4 == rdChoiceList7) || (rdChoiceList4 == rdChoiceList8) || (rdChoiceList4 == rdChoiceList9) || (rdChoiceList4 == rdChoiceList10) || (rdChoiceList5 == rdChoiceList6) || (rdChoiceList5 == rdChoiceList7) || (rdChoiceList5 == rdChoiceList8) || (rdChoiceList5 == rdChoiceList9) || (rdChoiceList5 == rdChoiceList10) || (rdChoiceList6 == rdChoiceList7) || (rdChoiceList6 == rdChoiceList8) || (rdChoiceList6 == rdChoiceList9) || (rdChoiceList6 == rdChoiceList10) || (rdChoiceList7 == rdChoiceList8) || (rdChoiceList7 == rdChoiceList9) || (rdChoiceList7 == rdChoiceList10) || (rdChoiceList8 == rdChoiceList9) || (rdChoiceList8 == rdChoiceList10) || (rdChoiceList9 == rdChoiceList10)) {
+            //     rdChoiceList1 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList2 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList3 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList4 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList5 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList6 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList7 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList8 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList9 = Math.floor(Math.random() * answerCheck.length);
+            //     rdChoiceList10 = Math.floor(Math.random() * answerCheck.length);
+            //   }
+            // $button[0].textContent = answerCheck[rdChoiceList1];
+            // $button[1].textContent = answerCheck[rdChoiceList2];
+            // $button[2].textContent = answerCheck[rdChoiceList3];
+            // $button[3].textContent = answerCheck[rdChoiceList4];
+            // $button[4].textContent = answerCheck[rdChoiceList5];
+            // $button[5].textContent = answerCheck[rdChoiceList6];
+            // $button[6].textContent = answerCheck[rdChoiceList7];
+            // $button[7].textContent = answerCheck[rdChoiceList8];
+            // $button[8].textContent = answerCheck[rdChoiceList9];
+            // $button[9].textContent = answerCheck[rdChoiceList10];
+            // $button[10].textContent = "この中に正解はない";
+            // if (($button[0].textContent == answerCheck[rdWord3]) || ($button[1].textContent == answerCheck[rdWord3]) || ($button[2].textContent == answerCheck[rdWord3]) || ($button[3].textContent == answerCheck[rdWord3]) || ($button[4].textContent == answerCheck[rdWord3]) || ($button[5].textContent == answerCheck[rdWord3]) || ($button[6].textContent == answerCheck[rdWord3]) || ($button[7].textContent == answerCheck[rdWord3]) || ($button[8].textContent == answerCheck[rdWord3]) || ($button[9].textContent == answerCheck[rdWord3]) || ($button[10].textContent == answerCheck[rdWord3])) {
+            // } else {
+            //   answerCheck[rdWord3] = "この中に正解はない";
+            // } 
+            startTimer();
+            // 開始音
+            questionSound.play();
+            questionSound.currentTime = 0;
+        }
+        
+        // let getTimerTime = () => {
+        //     return Math.floor((new Date() - startTime) / 1000);
+        // }
+        startGameTimer();
+        function startGameTimer() {
+            $gameTimer.innerText = originGameTime;
+            startGameTime = new Date();
+            setInterval(() => {
+                $gameTimer.innerText = originGameTime - getGameTimerTime();   
+                if($gameTimer.innerText <= 0) {
+                    startTime = 'none';
+                    startGameTime = 'none';
+                    $typeDisplay.textContent = "NaN";
+                    gameTimeUp();
+                }
+            }, 1000);
+            let getGameTimerTime = () => {
+                return Math.floor((new Date() - startGameTime) / 1000);
+            }
+        }
+        
+        // gameTimerが0になったとき
+        function gameTimeUp() {
+            questionSound.pause();
+            questionSound.currentTime = 0;
+            rightSound.pause();
+            questionSound.currentTime = 0;
+            wrongSound.pause();
+            questionSound.currentTime = 0;
+            clearSound.play();
+            clearSound.currentTime = 0;
+            $doc.getElementById('iChoice1').style.visibility = 'hidden';
+            $doc.getElementById('iChoice2').style.visibility = 'hidden';
+            $doc.getElementById('iChoice3').style.visibility = 'hidden';
+            $doc.getElementById('iChoice4').style.visibility = 'hidden';
+            $doc.getElementById('iChoice5').style.visibility = 'hidden';
+            $doc.getElementById('iChoice6').style.visibility = 'hidden';
+            $doc.getElementById('iChoice7').style.visibility = 'hidden';
+            $doc.getElementById('iChoice8').style.visibility = 'hidden';
+            $doc.getElementById('iChoice9').style.visibility = 'hidden';
+            $doc.getElementById('iChoice10').style.visibility = 'hidden';
+            $doc.getElementById('iChoice11').style.visibility = 'hidden';
+            let sum = score - mistake;
+            $typeInput.value = "１分間に，【　" + score + "　】問正解しました！\nタイプミス数は" + "【　" + mistake + "　】 回でした。\n得点は" + "【　" + sum + "　】（選択）です。\n【" + date + "】";
+            $typeInput.readOnly = true;
+            if ($doc.getElementById('date4').textContent != "") {
+              $doc.getElementById('date5').textContent = date;
+              $doc.getElementById('score5').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（選択）";
+            } else if ($doc.getElementById('date3').textContent != "") {
+              $doc.getElementById('date4').textContent = date;
+              $doc.getElementById('score4').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（選択）";
+            } else if ($doc.getElementById('date2').textContent != "") {
+              $doc.getElementById('date3').textContent = date;
+              $doc.getElementById('score3').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（選択）";
+            } else if ($doc.getElementById('date1').textContent != "") {
+              $doc.getElementById('date2').textContent = date;
+              $doc.getElementById('score2').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（選択）";
+            } else if ($doc.getElementById('date1').textContent != date) {
+              $doc.getElementById('date1').textContent = date;
+              $doc.getElementById('score1').textContent = "正解数：" + score + " / ミス数：" + mistake + " / 得点：" + sum + "（選択）";
+            }
+            addBtnClick4()
+            // $restart.classList.replace('nothing', 'cRestart');
+            // $restart.addEventListener('click', () => {
+            //     // window.location.reload();
+            //     init();
+            // });
+        };         
+    });
+
+
+    // コピペ禁止
+    const copy = $doc.querySelector('.cAnswer');
+        window.onload =  () => {
+        copy.oncopy =  () => {
+            return false;
+        }
+        copy.onpaste = function () {
+            return false
+        }
+        }
+    const copy2 = $doc.querySelector('.cTypeInput');
+        window.onload = () => {
+        copy2.oncopy = () => {
+        return false;
+        }
+        copy2.onpaste = () => {
+        return false
+        }
+        }   
+
+
+    const checkJS = (() => {
+      const $doc = document
+      const readingQuiz = [];
+      const readingChoice = [];
+      const readingAnswer = [];
+      const readingQuiz2 = [];
+      const readingChoice2 = [];
+      const readingAnswer2 = [];
+      const rightSound = new Audio('https://drive.google.com/uc?id=1fJ7QAZIZd5KSlmdIXDTMirVIxfaTYdlu&.mp3');
+      const wrongSound = new Audio('https://drive.google.com/uc?id=16rqE0PIJfyT14wRDzS69iqUbnjxqHlN1&.mp3');
+      const questionSound = new Audio('https://drive.google.com/uc?id=1kGVXzXg3NtAuiCIF-WQ9wO7cvy4mDFSE&.mp3');
+      const clearSound = new Audio('https://drive.google.com/uc?id=1e4-VCizwl_odE__OvYQHRqAAgbYjQ9AF&.mp3');
+      let quizIndex = 0;
+      let quizIndexPlus1 = 1;
+      let score = 0;
+      $doc.getElementById('checkChoice1').style.visibility = 'hidden';
+      $doc.getElementById('checkChoice2').style.visibility = 'hidden';
+      $doc.getElementById('checkChoice3').style.visibility = 'hidden';
+
+
+      checkSChoice1.addEventListener('click', () => {
+
+        $doc.getElementById('checkSChoice1').style.visibility = 'hidden';
+        $doc.getElementById('checkSChoice2').style.visibility = 'hidden';
+        $doc.getElementById('checkSChoice3').style.visibility = 'hidden';
+        $doc.getElementById('checkChoice1').style.visibility = 'visible';
+        $doc.getElementById('checkChoice2').style.visibility = 'visible';
+        $doc.getElementById('checkChoice3').style.visibility = 'visible';
+
+        // 開始音
+        questionSound.play();
+        questionSound.currentTime = 0;
+
+        let lines = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i = 0; i < 25; i += 5) {
+          let cells = lines[i].split(",");
+          readingQuiz.push(cells);
+        }
+        let lines2 = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i2 = 1; i2 < lines.length; i2++) {
+          if ((i2 + 1) % 5 == 0) {
+            i2++;
+            continue;
+          // } else if ((i2 + 0) % 4 == 0) {
+          //   i2++;
+          //   continue;
+          }
+        let cells2 = lines2[i2].split(",");
+          readingChoice.push(cells2);
+        }
+        let lines3 = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i3 = 4; i3 < lines.length; i3 += 5) {
+          let cells3 = lines3[i3].split(",");
+          readingAnswer.push(cells3);
+        }
+        const quizLength = readingQuiz.length;
+
+        const $button = $doc.querySelectorAll('[checkChoice]');
+          
+        const setupQuiz = () => {
+          $doc.getElementById('checkQ').textContent = "(" + quizIndexPlus1 + "/" + quizLength + ") " + readingQuiz[quizIndex];
+          let buttonIndex = 0;
+          while (buttonIndex < $button.length) {
+            $button[buttonIndex].textContent = readingChoice[quizIndex * 3 + buttonIndex];
+            buttonIndex++;
+          }
+        }
+        setupQuiz();
+          
+        // ボタンをクリックしたら正誤判定   ===：左右が完全に等しい    e：イベント   target：クリックされたボタン
+        const clickHandler = (e) => {
+          if (readingAnswer[quizIndex] == e.target.textContent) {
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score++;
+            window.alert('正解😃');
+          } else {
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+            window.alert('不正解😨\n'+'\n正解は，【\n'+readingAnswer[quizIndex]+'\n】です。');
+          }
+          
+        quizIndex++;
+        quizIndexPlus1++;
+
+        if(quizIndex < quizLength) {
+          setupQuiz();
+        } else {
+          clearSound.play();
+          clearSound.currentTime = 0;
+          $doc.getElementById('checkQ').textContent = "終了！あなたの得点は，" + score + " /" + quizLength + "点です。"
+          let buttonIndex2 = 0;
+          // let buttonIndexPlus1 = 1;
+          while(buttonIndex2 < $button.length){
+          $button[buttonIndex2].style.visibility = "hidden";
+          buttonIndex2++;
+          addBtnClick4()
+        }
+          window.alert('終了！あなたの得点は，'+ score + ' /' + quizLength + '点です。');
+        }
+        }
+
+        // // ボタンが押されたら次の問題へ
+        let handlerIndex = 0;
+        while (handlerIndex < $button.length) {
+          $button[handlerIndex].addEventListener('click', (e) => {
+          clickHandler(e);
+          });
+          handlerIndex++;
+        }
+        
+        });
+
+
+      checkSChoice2.addEventListener('click', () => {
+
+        $doc.getElementById('checkSChoice1').style.visibility = 'hidden';
+        $doc.getElementById('checkSChoice2').style.visibility = 'hidden';
+        $doc.getElementById('checkSChoice3').style.visibility = 'hidden';
+        $doc.getElementById('checkChoice1').style.visibility = 'visible';
+        $doc.getElementById('checkChoice2').style.visibility = 'visible';
+        $doc.getElementById('checkChoice3').style.visibility = 'visible';
+
+        // 開始音
+        questionSound.play();
+        questionSound.currentTime = 0;
+
+        let lines = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i = 25; i < lines.length; i += 5) {
+          let cells = lines[i].split(",");
+          readingQuiz.push(cells);
+        }
+        let lines2 = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i2 = 26; i2 < lines.length; i2++) {
+          if ((i2 + 1) % 5 == 0) {
+            i2++;
+            continue;
+          // } else if ((i2 + 0) % 4 == 0) {
+          //   i2++;
+          //   continue;
+          }
+        let cells2 = lines2[i2].split(",");
+          readingChoice.push(cells2);
+        }
+        let lines3 = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i3 = 29; i3 < lines.length; i3 += 5) {
+          let cells3 = lines3[i3].split(",");
+          readingAnswer.push(cells3);
+        }
+        const quizLength = readingQuiz.length;
+
+        const $button = $doc.querySelectorAll('[checkChoice]');
+          
+        const setupQuiz = () => {
+          $doc.getElementById('checkQ').textContent = "(" + quizIndexPlus1 + "/" + quizLength + ") " + readingQuiz[quizIndex];
+          let buttonIndex = 0;
+          while (buttonIndex < $button.length) {
+            $button[buttonIndex].textContent = readingChoice[quizIndex * 3 + buttonIndex];
+            buttonIndex++;
+          }
+        }
+        setupQuiz();
+          
+        // ボタンをクリックしたら正誤判定   ===：左右が完全に等しい    e：イベント   target：クリックされたボタン
+        const clickHandler = (e) => {
+          if (readingAnswer[quizIndex] == e.target.textContent) {
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score++;
+            window.alert('正解😃');
+          } else {
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+            window.alert('不正解😨\n'+'\n正解は，【\n'+readingAnswer[quizIndex]+'\n】です。');
+          }
+          
+        quizIndex++;
+        quizIndexPlus1++;
+
+        if(quizIndex < quizLength) {
+          setupQuiz();
+        } else {
+          clearSound.play();
+          clearSound.currentTime = 0;
+          $doc.getElementById('checkQ').textContent = "終了！あなたの得点は，" + score + " /" + quizLength + "点です。"
+          let buttonIndex2 = 0;
+          // let buttonIndexPlus1 = 1;
+          while(buttonIndex2 < $button.length){
+          $button[buttonIndex2].style.visibility = "hidden";
+          buttonIndex2++;
+          addBtnClick4()
+        }
+          window.alert('終了！あなたの得点は，'+ score + ' /' + quizLength + '点です。');
+        }
+        }
+
+        // // ボタンが押されたら次の問題へ
+        let handlerIndex = 0;
+        while (handlerIndex < $button.length) {
+          $button[handlerIndex].addEventListener('click', (e) => {
+          clickHandler(e);
+          });
+          handlerIndex++;
+        }
+        
+        });
+
+        checkSChoice3.addEventListener('click', () => {
+
+        $doc.getElementById('checkSChoice1').style.visibility = 'hidden';
+        $doc.getElementById('checkSChoice2').style.visibility = 'hidden';
+        $doc.getElementById('checkSChoice3').style.visibility = 'hidden';
+        $doc.getElementById('checkChoice1').style.visibility = 'visible';
+        $doc.getElementById('checkChoice2').style.visibility = 'visible';
+        $doc.getElementById('checkChoice3').style.visibility = 'visible';
+
+        // 開始音
+        questionSound.play();
+        questionSound.currentTime = 0;
+
+        let lines = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i = 0; i < lines.length; i += 5) {
+          let cells = lines[i].split(",");
+          readingQuiz.push(cells);
+        }
+        let lines2 = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i2 = 1; i2 < lines.length; i2++) {
+          if ((i2 + 1) % 5 == 0) {
+            i2++;
+            continue;
+          // } else if ((i2 + 0) % 4 == 0) {
+          //   i2++;
+          //   continue;
+          }
+        let cells2 = lines2[i2].split(",");
+          readingChoice.push(cells2);
+        }
+        let lines3 = <?= lCQ?>.split(/\r\n|\n/);
+        for (let i3 = 4; i3 < lines.length; i3 += 5) {
+          let cells3 = lines3[i3].split(",");
+          readingAnswer.push(cells3);
+        }
+        const quizLength = readingQuiz.length;
+
+        const $button = $doc.querySelectorAll('[checkChoice]');
+          
+        const setupQuiz = () => {
+          $doc.getElementById('checkQ').textContent = "(" + quizIndexPlus1 + "/" + quizLength + ") " + readingQuiz[quizIndex];
+          let buttonIndex = 0;
+          while (buttonIndex < $button.length) {
+            $button[buttonIndex].textContent = readingChoice[quizIndex * 3 + buttonIndex];
+            buttonIndex++;
+          }
+        }
+        setupQuiz();
+          
+        // ボタンをクリックしたら正誤判定   ===：左右が完全に等しい    e：イベント   target：クリックされたボタン
+        const clickHandler = (e) => {
+          if (readingAnswer[quizIndex] == e.target.textContent) {
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score++;
+            window.alert('正解😃');
+          } else {
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+            window.alert('不正解😨\n'+'\n正解は，【\n'+readingAnswer[quizIndex]+'\n】です。');
+          }
+          
+        quizIndex++;
+        quizIndexPlus1++;
+
+        if(quizIndex < quizLength) {
+          setupQuiz();
+        } else {
+          clearSound.play();
+          clearSound.currentTime = 0;
+          $doc.getElementById('checkQ').textContent = "終了！あなたの得点は，" + score + " /" + quizLength + "点です。"
+          let buttonIndex2 = 0;
+          // let buttonIndexPlus1 = 1;
+          while(buttonIndex2 < $button.length){
+          $button[buttonIndex2].style.visibility = "hidden";
+          buttonIndex2++;
+          addBtnClick4()
+        }
+          window.alert('終了！あなたの得点は，'+ score + ' /' + quizLength + '点です。');
+        }
+        }
+
+        // // ボタンが押されたら次の問題へ
+        let handlerIndex = 0;
+        while (handlerIndex < $button.length) {
+          $button[handlerIndex].addEventListener('click', (e) => {
+          clickHandler(e);
+          });
+          handlerIndex++;
+        }
+        
+        });
+
+
+    });
+    checkJS();
+
+
+    const dailyJS = (() => {
+      const $doc = document
+      const readingQuiz = [];
+      const readingChoice = [];
+      const readingAnswer = [];
+      const rightSound = new Audio('https://drive.google.com/uc?id=1fJ7QAZIZd5KSlmdIXDTMirVIxfaTYdlu&.mp3');
+      const wrongSound = new Audio('https://drive.google.com/uc?id=16rqE0PIJfyT14wRDzS69iqUbnjxqHlN1&.mp3');
+      const questionSound = new Audio('https://drive.google.com/uc?id=1kGVXzXg3NtAuiCIF-WQ9wO7cvy4mDFSE&.mp3');
+      const clearSound = new Audio('https://drive.google.com/uc?id=1e4-VCizwl_odE__OvYQHRqAAgbYjQ9AF&.mp3');
+      let quizIndex = 0;
+      let quizIndexPlus1 = 1;
+      let score = 0;
+      $doc.getElementById('iJQ').style.visibility = 'hidden';
+      $doc.getElementById('iJQChoice1').style.visibility = 'hidden';
+      $doc.getElementById('iJQChoice2').style.visibility = 'hidden';
+      $doc.getElementById('iJQChoice3').style.visibility = 'hidden';
+      $doc.getElementById('iJQChoice4').style.visibility = 'hidden';
+      $doc.getElementById('iJQChoice5').style.visibility = 'hidden';
+      let lengths = 0;
+      if ($doc.getElementById('score11').textContent == "") {
+        $doc.getElementById('dailyTime').textContent = "振り返り①";
+        lengths = 30;
+      } else if ($doc.getElementById('score22').textContent == "") {
+        $doc.getElementById('dailyTime').textContent = "振り返り②";
+        lengths = 60;
+      } else if ($doc.getElementById('score33').textContent == "") {
+        $doc.getElementById('dailyTime').textContent = "振り返り③";
+        lengths = 90;
+      } else if ($doc.getElementById('score33').textContent != "") {
+        $doc.getElementById('dailyTime').textContent = "振り返り④";
+        lengths = 90;
+      };
+
+      iStartButton.addEventListener('click', () => {
+
+        $doc.getElementById('iJQ').style.visibility = 'visible';
+        $doc.getElementById('iJQChoice1').style.visibility = 'visible';
+        $doc.getElementById('iJQChoice2').style.visibility = 'visible';
+        $doc.getElementById('iJQChoice3').style.visibility = 'visible';
+        // $doc.getElementById('iJQChoice4').style.visibility = 'visible';
+        // $doc.getElementById('iJQChoice5').style.visibility = 'visible';
+        $doc.getElementById('iStartButton').style.visibility = 'hidden';
+
+        // 開始音
+        questionSound.play();
+        questionSound.currentTime = 0;
+
+        let lines = <?=daily ?>.split(/\r\n|\n/);
+        // if(<?= daily?>.split(/\r\n|\n/).length < 168) {
+        //   lengths = 126
+        // } else if(<?=daily ?>.split(/\r\n|\n/).length < 126) {
+        //   lengths = 84
+        // } else if(<?=daily ?>.split(/\r\n|\n/).length < 84) {
+        //   lengths = 42
+        // };
+        for (let i = 0; i < lengths; i += 5) {
+          let cells = lines[i].split(",");
+          readingQuiz.push(cells);
+        }
+        let lines2 = <?=daily ?>.split(/\r\n|\n/);
+        for (let i2 = 1; i2 < lines.length; i2++) {
+          if ((i2 + 1) % 5 == 0) {
+            i2++;
+            continue;
+          } 
+          // if ((i2) % 4 == 0) {
+          //   i2++;
+          //   continue;
+          // } 
+        let cells2 = lines2[i2].split(",");
+          readingChoice.push(cells2);
+        }
+        let lines3 = <?=daily ?>.split(/\r\n|\n/);
+        for (let i3 = 4; i3 < lines.length; i3 += 5) {
+          let cells3 = lines3[i3].split(",");
+          readingAnswer.push(cells3);
+        }
+        const quizLength = readingQuiz.length;
+
+        const $button = $doc.querySelectorAll('[JQchoice]');
+          
+        const setupQuiz = () => {
+          $doc.getElementById('iJQ').textContent = "(" + quizIndexPlus1 + "/" + quizLength + ") " + readingQuiz[quizIndex];
+          let buttonIndex = 0;
+          while (buttonIndex < $button.length) {
+            $button[buttonIndex].textContent = readingChoice[quizIndex * 3 + buttonIndex];
+            buttonIndex++;
+          }
+        }
+        setupQuiz();
+          
+        // ボタンをクリックしたら正誤判定   ===：左右が完全に等しい    e：イベント   target：クリックされたボタン
+        const clickHandler = (e) => {
+          if (readingAnswer[quizIndex] == e.target.textContent) {
+            rightSound.play();
+            rightSound.currentTime = 0;
+            score++;
+            window.alert('正解😃');
+          } else {
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+            window.alert('不正解😨\n'+'\n正解は，【\n'+readingAnswer[quizIndex]+'\n】です。');
+          }
+          
+        quizIndex++;
+        quizIndexPlus1++;
+
+        if(quizIndex < quizLength) {
+          setupQuiz();
+        } else {
+          clearSound.play();
+          clearSound.currentTime = 0;
+          $doc.getElementById('iJQ').textContent = "終了！あなたの得点は，" + score + " /" + quizLength + "点です。"
+          let buttonIndex2 = 0;
+          // let buttonIndexPlus1 = 1;
+          while(buttonIndex2 < $button.length){
+          $button[buttonIndex2].style.visibility = "hidden";
+          buttonIndex2++;
+          // buttonIndexPlus1++;
+          if (quizLength == 6) {
+            $doc.getElementById('date11').textContent = date;
+            $doc.getElementById('score11').textContent = score + " /" + quizLength;
+          } else if (quizLength == 12) {
+            $doc.getElementById('date22').textContent = date;
+            $doc.getElementById('score22').textContent = score + " /" + quizLength;
+          } else if (quizLength == 18) {
+            $doc.getElementById('date33').textContent = date;
+            $doc.getElementById('score33').textContent = score + " /" + quizLength;
+          } else {
+            $doc.getElementById('date44').textContent = date;
+            $doc.getElementById('score44').textContent = score + " /" + quizLength;
+          }
+          addBtnClick4()
+        }
+          window.alert('終了！あなたの得点は，'+ score + ' /' + quizLength + '点です。');
+        }
+        }
+
+        // // ボタンが押されたら次の問題へ
+        let handlerIndex = 0;
+        while (handlerIndex < $button.length) {
+          $button[handlerIndex].addEventListener('click', (e) => {
+          clickHandler(e);
+          });
+          handlerIndex++;
+        }
+        
+        });
+    });
+    dailyJS();
+
+    var isTouch = ((typeof window.ontouchstart) !== 'undefined');
+    var touchStart = isTouch ? 'touchstart' : 'mousedown';
+    var touchEnd = isTouch ? 'touchend' : 'mouseup';
+
+    $('.flick-median').on(touchStart, function(e){
+      e.preventDefault();
+      console.log("touchStart");
+      $(this).nextAll().show();
+    });
+    $('.flick-list li').on(touchEnd, function(e){
+      e.preventDefault();
+      var thisX, thisY;
+      thisX = e.clientX || e.originalEvent.changedTouches[0].clientX;
+      thisY = e.clientY || e.originalEvent.changedTouches[0].clientY;
+      console.log(e);
+      console.log("touchEnd");
+      console.log(this);
+    var $select = $(document.elementFromPoint(thisX,thisY));
+    if( $select.is( $(this).parent().children() ) ){
+        var inputVal =$('#flickInput').val() + $select.html();
+        $('#flickInput').val(inputVal)
+    }
+    $(this).parent().children(':not(.flick-median)').hide();
+    });
+
+
+  })();
+  // -----------------------------------------------------
+  function addBtnClick() {
+    const checkAddFlg = window.confirm('記録します');
+    if(checkAddFlg) {
+      const record1 = document.getElementById('frameMemo').value;
+      const record2 = document.getElementById('meanText1').value;
+      const record3 = document.getElementById('meanText2').value;
+      const record4 = document.getElementById('meanText3').value;
+      const record5 = document.getElementById('meanText4').value;
+      const record6 = document.getElementById('meanText5').value;
+      const record7 = document.getElementById('meanText6').value;
+      const record8 = document.getElementById('meanText7').value;
+      const record9 = document.getElementById('meanText8').value;
+      const record10 = document.getElementById('meanText9').value;
+      const record11 = document.getElementById('meanText10').value;
+      const record12 = document.getElementById('meanText11').value;
+      const record13 = document.getElementById('meanText12').value;
+      const record14 = document.getElementById('meanText13').value;
+      const record15 = document.getElementById('meanText14').value;
+      const record16 = document.getElementById('meanText15').value;
+      const record17 = document.getElementById('vmText1').value;
+      const record18 = document.getElementById('vmText2').value;
+      const record19 = document.getElementById('vmText3').value;
+      const record20 = document.getElementById('vmText4').value;
+      const record21 = document.getElementById('vmText5').value;
+      const record22 = document.getElementById('vmText6').value;
+      const record23 = document.getElementById('vmText7').value;
+      const record24 = document.getElementById('vmText8').value;
+      const record25 = document.getElementById('vmText9').value;
+      const record26 = document.getElementById('vmText10').value;
+      const record27 = document.getElementById('vmText11').value;
+      const record28 = document.getElementById('vmText12').value;
+      const record29 = document.getElementById('vmText13').value;
+      const record30 = document.getElementById('vmText14').value;
+      const record31 = document.getElementById('vmText15').value;
+      const record32 = document.getElementById('lCText1').value;
+      const record33 = document.getElementById('lCText2').value;
+      const record34 = document.getElementById('lCText3').value;
+      const record35 = document.getElementById('lCText4').value;
+      const record36 = document.getElementById('lCText5').value;
+      const record37 = document.getElementById('lCText6').value;
+      const record38 = document.getElementById('lCText7').value;
+      const record39 = document.getElementById('lCText8').value;
+      const record40 = document.getElementById('lCText9').value;
+      const record41 = document.getElementById('lCText10').value;
+      const record42 = document.getElementById('lCText11').value;
+      const record43 = document.getElementById('lCText12').value;
+      const record44 = document.getElementById('lCText13').value;
+      const record45 = document.getElementById('lCText14').value;
+      const record46 = document.getElementById('lCText15').value;
+      const record47 = document.getElementById('lCText16').value;
+      const record48 = document.getElementById('lCText17').value;
+      const record49 = document.getElementById('lCText18').value;
+      const record50 = document.getElementById('lCText19').value;
+      const record51 = document.getElementById('lCText20').value;
+      const record52 = document.getElementById('memo1').value;
+      const record53 = document.getElementById('qAText1').value;
+      const record54 = document.getElementById('qAText2').value;
+      const record55 = document.getElementById('qAText3').value;
+      const record56 = document.getElementById('qAText4').value;
+      const record57 = document.getElementById('qAText5').value;
+      const record58 = document.getElementById('qAText6').value;
+      const record59 = document.getElementById('memo2').value;
+      const record60 = document.getElementById('gPText1').value;
+      const record61 = document.getElementById('gPText2').value;
+      const record62 = document.getElementById('gPText3').value;
+      const record63 = document.getElementById('gPText4').value;
+      const record64 = document.getElementById('gPText5').value;
+      const record65 = document.getElementById('gPText6').value;
+      const record66 = document.getElementById('memo3').value;
+      const record67 = document.getElementById('rText1').value;
+      const record68 = document.getElementById('rText2').value;
+      const record69 = document.getElementById('rText3').value;
+      const record70 = document.getElementById('rText4').value;
+      const record71 = document.getElementById('rText5').value;
+      const record72 = document.getElementById('rText6').value;
+      const record73 = document.getElementById('rText7').value;
+      const record74 = document.getElementById('date1').textContent;
+      const record75 = document.getElementById('score1').textContent;
+      const record76 = document.getElementById('date2').textContent;
+      const record77 = document.getElementById('score2').textContent;
+      const record78 = document.getElementById('date3').textContent;
+      const record79 = document.getElementById('score3').textContent;      
+      const record80 = document.getElementById('date4').textContent;
+      const record81 = document.getElementById('score4').textContent;      
+      const record82 = document.getElementById('date5').textContent;
+      const record83 = document.getElementById('score5').textContent;
+      // const preRecord84 = [];
+      //   preRecord84.push(record32);
+      //   preRecord84.push(record33);
+      //   preRecord84.push(record34);
+      //   preRecord84.push(record35);
+      //   preRecord84.push(record36);
+      //   preRecord84.push(record37);
+      //   preRecord84.push(record38);
+      //   preRecord84.push(record39);
+      //   preRecord84.push(record40);
+      //   preRecord84.push(record41);
+      //   preRecord84.push(record42);
+      //   preRecord84.push(record43);
+      //   preRecord84.push(record44);
+      //   preRecord84.push(record45);
+      //   preRecord84.push(record46);
+      //   preRecord84.push(record47);
+      //   preRecord84.push(record48);
+      //   preRecord84.push(record49);
+      //   preRecord84.push(record50);
+      //   preRecord84.push(record51);
+      // let clean = preRecord84.filter(Boolean);
+      const record85 = document.getElementById('date11').textContent;
+      const record86 = document.getElementById('score11').textContent;
+      const record87 = document.getElementById('date22').textContent;
+      const record88 = document.getElementById('score22').textContent;
+      const record89 = document.getElementById('date33').textContent;
+      const record90 = document.getElementById('score33').textContent;      
+      const record91 = document.getElementById('date44').textContent;
+      const record92 = document.getElementById('score44').textContent;
+      const pre93a = [];
+      pre93a.push(record2);
+      pre93a.push(record3);
+      pre93a.push(record4);
+      pre93a.push(record5);
+      pre93a.push(record6);
+      pre93a.push(record7);
+      pre93a.push(record8);
+      pre93a.push(record9);
+      pre93a.push(record10);
+      pre93a.push(record11);
+      pre93a.push(record32);
+      pre93a.push(record33);
+      pre93a.push(record34);
+      pre93a.push(record35);
+      pre93a.push(record36);
+      pre93a.push(record37);
+      pre93a.push(record38);
+      pre93a.push(record39);
+      pre93a.push(record40);
+      pre93a.push(record41);
+      pre93a.push(record42);
+      pre93a.push(record43);
+      pre93a.push(record44);
+      pre93a.push(record45);
+      pre93a.push(record46);
+      pre93a.push(record53);
+      pre93a.push(record54);
+      pre93a.push(record55);
+      pre93a.push(record56);
+      pre93a.push(record57);
+      pre93a.push(record58);
+      pre93a.push(record60);
+      pre93a.push(record61);
+      pre93a.push(record62);
+      pre93a.push(record63);
+      pre93a.push(record64);
+      pre93a.push(record65);
+      pre93a.push(record67);
+      pre93a.push(record68);
+      pre93a.push(record69);
+      pre93a.push(record70);
+      pre93a.push(record71);
+      pre93a.push(record72);
+      pre93a.push(record73);
+      let clean = pre93a.filter(Boolean);
+      const record84 = clean.length;
+      let pre93a_2 = "";
+      if(clean.length >= 30) {
+        pre93a_2 = "A";
+      } else if (clean.length >= 20) {
+        pre93a_2 = "B";
+      } else {
+        pre93a_2 = "C";
+      };
+      const pre93b = [];
+      pre93b.push(record75);
+      pre93b.push(record77);
+      pre93b.push(record79);
+      pre93b.push(record81);
+      pre93b.push(record83);
+      let clean2 = pre93b.filter(Boolean);
+      let pre93b_2 = "";
+      if(clean2.length >= 2) {
+        pre93b_2 = "A";
+      } else if (clean2.length >= 1) {
+        pre93b_2 = "B";
+      } else {
+        pre93b_2 = "C";
+      };
+      const pre93c = [];
+      pre93c.push(record86);
+      pre93c.push(record88);
+      pre93c.push(record90);
+      pre93c.push(record92);
+      let clean3 = pre93c.filter(Boolean);
+      let pre93c_2 = "";
+      if(clean3.length >= 2) {
+        pre93c_2 = "A";
+      } else if (clean3.length >= 1) {
+        pre93c_2 = "B";
+      } else {
+        pre93c_2 = "C";
+      };
+      const record93 = pre93a_2 + pre93b_2 + pre93c_2;
+      const record = "墸" + record1 + "墸" + "\n" + "墸" + record2 + "墸" + "\n" + "墸" + record3 + "墸" + "\n" + "墸" + record4 + "墸" + "\n" + "墸" + record5 + "墸" + "\n" + "墸" + record6 + "墸" + "\n" + "墸" + record7 + "墸" + "\n" + "墸" + record8 + "墸" + "\n" + "墸" + record9 + "墸" + "\n" + "墸" + record10 + "墸" + "\n" + "墸" + record11 + "墸" + "\n" + "墸" + record12 + "墸" + "\n" + "墸" + record13 + "墸" + "\n" + "墸" + record14 + "墸" + "\n" + "墸" + record15 + "墸" + "\n" + "墸" + record16 + "墸" + "\n" + "墸" + record17 + "墸" + "\n" + "墸" + record18 + "墸" + "\n" + "墸" + record19 + "墸" + "\n" + "墸" + record20 + "墸" + "\n" + "墸" + record21 + "墸" + "\n" + "墸" + record22 + "墸" + "\n" + "墸" + record23 + "墸" + "\n" + "墸" + record24 + "墸" + "\n" + "墸" + record25 + "墸" + "\n" + "墸" + record26 + "墸" + "\n" + "墸" + record27 + "墸" + "\n" + "墸" + record28 + "墸" + "\n" + "墸" + record29 + "墸" + "\n" + "墸" + record30 + "墸" + "\n" + "墸" + record31 + "墸" + "\n" + "墸" + record32 + "墸" + "\n" + "墸" + record33 + "墸" + "\n" + "墸" + record34 + "墸" + "\n" + "墸" + record35 + "墸" + "\n" + "墸" + record36 + "墸" + "\n" + "墸" + record37 + "墸" + "\n" + "墸" + record38 + "墸" + "\n" + "墸" + record39 + "墸" + "\n" + "墸" + record40 + "墸" + "\n" + "墸" + record41 + "墸" + "\n" + "墸" + record42 + "墸" + "\n" + "墸" + record43 + "墸" + "\n" + "墸" + record44 + "墸" + "\n" + "墸" + record45 + "墸" + "\n" + "墸" + record46 + "墸" + "\n" + "墸" + record47 + "墸" + "\n" + "墸" + record48 + "墸" + "\n" + "墸" + record49 + "墸" + "\n" + "墸" + record50 + "墸" + "\n" + "墸" + record51 + "墸" + "\n" + "墸" + record52 + "墸" + "\n" + "墸" + record53 + "墸" + "\n" + "墸" + record54 + "墸" + "\n" + "墸" + record55 + "墸" + "\n" + "墸" + record56 + "墸" + "\n" + "墸" + record57 + "墸" + "\n" + "墸" + record58 + "墸" + "\n" + "墸" + record59 + "墸" + "\n" + "墸" + record60 + "墸" + "\n" + "墸" + record61 + "墸" + "\n" + "墸" + record62 + "墸" + "\n" + "墸" + record63 + "墸" + "\n" + "墸" + record64 + "墸" + "\n" + "墸" + record65 + "墸" + "\n" + "墸" + record66 + "墸" + "\n" + "墸" + record67 + "墸" + "\n" + "墸" + record68 + "墸" + "\n" + "墸" + record69 + "墸" + "\n" + "墸" + record70 + "墸" + "\n" + "墸" + record71 + "墸" + "\n" + "墸" + record72 + "墸" + "\n" + "墸" + record73 + "墸" + "\n" + "墸" + record74 + "墸" + "\n" + "墸" + record75 + "墸" + "\n" + "墸" + record76 + "墸" + "\n" + "墸" + record77 + "墸" + "\n" + "墸" + record78 + "墸" + "\n" + "墸" + record79 + "墸" + "\n" + "墸" + record80 + "墸" + "\n" + "墸" + record81 + "墸" + "\n" + "墸" + record82 + "墸" + "\n" + "墸" + record83 + "墸" + "\n" + "墸" + record84 + "墸" + "\n" + "墸" + record85 + "墸" + "\n" + "墸" + record86 + "墸" + "\n" + "墸" + record87 + "墸" + "\n" + "墸" + record88 + "墸" + "\n" + "墸" + record89 + "墸" + "\n" + "墸" + record90 + "墸" + "\n" + "墸" + record91 + "墸" + "\n" + "墸" + record92 + "墸" + "\n" + "墸" + record93 + "墸";
+      google.script.run.withSuccessHandler(dataAddSuccess).withFailureHandler(dataAddFail).addData2(record);
+    } else {
+      alert("記録をキャンセルしました");  
+    }
+  }
+  // -----------------------------------------------------
+  function addBtnClick4() {
+    const record1 = document.getElementById('frameMemo').value;
+    const record2 = document.getElementById('meanText1').value;
+    const record3 = document.getElementById('meanText2').value;
+    const record4 = document.getElementById('meanText3').value;
+    const record5 = document.getElementById('meanText4').value;
+    const record6 = document.getElementById('meanText5').value;
+    const record7 = document.getElementById('meanText6').value;
+    const record8 = document.getElementById('meanText7').value;
+    const record9 = document.getElementById('meanText8').value;
+    const record10 = document.getElementById('meanText9').value;
+    const record11 = document.getElementById('meanText10').value;
+    const record12 = document.getElementById('meanText11').value;
+    const record13 = document.getElementById('meanText12').value;
+    const record14 = document.getElementById('meanText13').value;
+    const record15 = document.getElementById('meanText14').value;
+    const record16 = document.getElementById('meanText15').value;
+    const record17 = document.getElementById('vmText1').value;
+    const record18 = document.getElementById('vmText2').value;
+    const record19 = document.getElementById('vmText3').value;
+    const record20 = document.getElementById('vmText4').value;
+    const record21 = document.getElementById('vmText5').value;
+    const record22 = document.getElementById('vmText6').value;
+    const record23 = document.getElementById('vmText7').value;
+    const record24 = document.getElementById('vmText8').value;
+    const record25 = document.getElementById('vmText9').value;
+    const record26 = document.getElementById('vmText10').value;
+    const record27 = document.getElementById('vmText11').value;
+    const record28 = document.getElementById('vmText12').value;
+    const record29 = document.getElementById('vmText13').value;
+    const record30 = document.getElementById('vmText14').value;
+    const record31 = document.getElementById('vmText15').value;
+    const record32 = document.getElementById('lCText1').value;
+    const record33 = document.getElementById('lCText2').value;
+    const record34 = document.getElementById('lCText3').value;
+    const record35 = document.getElementById('lCText4').value;
+    const record36 = document.getElementById('lCText5').value;
+    const record37 = document.getElementById('lCText6').value;
+    const record38 = document.getElementById('lCText7').value;
+    const record39 = document.getElementById('lCText8').value;
+    const record40 = document.getElementById('lCText9').value;
+    const record41 = document.getElementById('lCText10').value;
+    const record42 = document.getElementById('lCText11').value;
+    const record43 = document.getElementById('lCText12').value;
+    const record44 = document.getElementById('lCText13').value;
+    const record45 = document.getElementById('lCText14').value;
+    const record46 = document.getElementById('lCText15').value;
+    const record47 = document.getElementById('lCText16').value;
+    const record48 = document.getElementById('lCText17').value;
+    const record49 = document.getElementById('lCText18').value;
+    const record50 = document.getElementById('lCText19').value;
+    const record51 = document.getElementById('lCText20').value;
+    const record52 = document.getElementById('memo1').value;
+    const record53 = document.getElementById('qAText1').value;
+    const record54 = document.getElementById('qAText2').value;
+    const record55 = document.getElementById('qAText3').value;
+    const record56 = document.getElementById('qAText4').value;
+    const record57 = document.getElementById('qAText5').value;
+    const record58 = document.getElementById('qAText6').value;
+    const record59 = document.getElementById('memo2').value;
+    const record60 = document.getElementById('gPText1').value;
+    const record61 = document.getElementById('gPText2').value;
+    const record62 = document.getElementById('gPText3').value;
+    const record63 = document.getElementById('gPText4').value;
+    const record64 = document.getElementById('gPText5').value;
+    const record65 = document.getElementById('gPText6').value;
+    const record66 = document.getElementById('memo3').value;
+    const record67 = document.getElementById('rText1').value;
+    const record68 = document.getElementById('rText2').value;
+    const record69 = document.getElementById('rText3').value;
+    const record70 = document.getElementById('rText4').value;
+    const record71 = document.getElementById('rText5').value;
+    const record72 = document.getElementById('rText6').value;
+    const record73 = document.getElementById('rText7').value;
+    const record74 = document.getElementById('date1').textContent;
+    const record75 = document.getElementById('score1').textContent;
+    const record76 = document.getElementById('date2').textContent;
+    const record77 = document.getElementById('score2').textContent;
+    const record78 = document.getElementById('date3').textContent;
+    const record79 = document.getElementById('score3').textContent;      
+    const record80 = document.getElementById('date4').textContent;
+    const record81 = document.getElementById('score4').textContent;      
+    const record82 = document.getElementById('date5').textContent;
+    const record83 = document.getElementById('score5').textContent;
+    // const preRecord84 = [];
+    //   preRecord84.push(record32);
+    //   preRecord84.push(record33);
+    //   preRecord84.push(record34);
+    //   preRecord84.push(record35);
+    //   preRecord84.push(record36);
+    //   preRecord84.push(record37);
+    //   preRecord84.push(record38);
+    //   preRecord84.push(record39);
+    //   preRecord84.push(record40);
+    //   preRecord84.push(record41);
+    //   preRecord84.push(record42);
+    //   preRecord84.push(record43);
+    //   preRecord84.push(record44);
+    //   preRecord84.push(record45);
+    //   preRecord84.push(record46);
+    //   preRecord84.push(record47);
+    //   preRecord84.push(record48);
+    //   preRecord84.push(record49);
+    //   preRecord84.push(record50);
+    //   preRecord84.push(record51);
+    // let clean = preRecord84.filter(Boolean);
+    const record85 = document.getElementById('date11').textContent;
+    const record86 = document.getElementById('score11').textContent;
+    const record87 = document.getElementById('date22').textContent;
+    const record88 = document.getElementById('score22').textContent;
+    const record89 = document.getElementById('date33').textContent;
+    const record90 = document.getElementById('score33').textContent;      
+    const record91 = document.getElementById('date44').textContent;
+    const record92 = document.getElementById('score44').textContent;
+    const pre93a = [];
+    pre93a.push(record2);
+    pre93a.push(record3);
+    pre93a.push(record4);
+    pre93a.push(record5);
+    pre93a.push(record6);
+    pre93a.push(record7);
+    pre93a.push(record8);
+    pre93a.push(record9);
+    pre93a.push(record10);
+    pre93a.push(record11);
+    pre93a.push(record32);
+    pre93a.push(record33);
+    pre93a.push(record34);
+    pre93a.push(record35);
+    pre93a.push(record36);
+    pre93a.push(record37);
+    pre93a.push(record38);
+    pre93a.push(record39);
+    pre93a.push(record40);
+    pre93a.push(record41);
+    pre93a.push(record42);
+    pre93a.push(record43);
+    pre93a.push(record44);
+    pre93a.push(record45);
+    pre93a.push(record46);
+    pre93a.push(record53);
+    pre93a.push(record54);
+    pre93a.push(record55);
+    pre93a.push(record56);
+    pre93a.push(record57);
+    pre93a.push(record58);
+    pre93a.push(record60);
+    pre93a.push(record61);
+    pre93a.push(record62);
+    pre93a.push(record63);
+    pre93a.push(record64);
+    pre93a.push(record65);
+    pre93a.push(record67);
+    pre93a.push(record68);
+    pre93a.push(record69);
+    pre93a.push(record70);
+    pre93a.push(record71);
+    pre93a.push(record72);
+    pre93a.push(record73);
+    let clean = pre93a.filter(Boolean);
+    const record84 = clean.length;
+    let pre93a_2 = "";
+    if(clean.length >= 30) {
+      pre93a_2 = "A";
+    } else if (clean.length >= 20) {
+      pre93a_2 = "B";
+    } else {
+      pre93a_2 = "C";
+    };
+    const pre93b = [];
+    pre93b.push(record75);
+    pre93b.push(record77);
+    pre93b.push(record79);
+    pre93b.push(record81);
+    pre93b.push(record83);
+    let clean2 = pre93b.filter(Boolean);
+    let pre93b_2 = "";
+    if(clean2.length >= 2) {
+      pre93b_2 = "A";
+    } else if (clean2.length >= 1) {
+      pre93b_2 = "B";
+    } else {
+      pre93b_2 = "C";
+    };
+    const pre93c = [];
+    pre93c.push(record86);
+    pre93c.push(record88);
+    pre93c.push(record90);
+    pre93c.push(record92);
+    let clean3 = pre93c.filter(Boolean);
+    let pre93c_2 = "";
+    if(clean3.length >= 2) {
+      pre93c_2 = "A";
+    } else if (clean3.length >= 1) {
+      pre93c_2 = "B";
+    } else {
+      pre93c_2 = "C";
+    };
+    const record93 = pre93a_2 + pre93b_2 + pre93c_2;
+    const record = "墸" + record1 + "墸" + "\n" + "墸" + record2 + "墸" + "\n" + "墸" + record3 + "墸" + "\n" + "墸" + record4 + "墸" + "\n" + "墸" + record5 + "墸" + "\n" + "墸" + record6 + "墸" + "\n" + "墸" + record7 + "墸" + "\n" + "墸" + record8 + "墸" + "\n" + "墸" + record9 + "墸" + "\n" + "墸" + record10 + "墸" + "\n" + "墸" + record11 + "墸" + "\n" + "墸" + record12 + "墸" + "\n" + "墸" + record13 + "墸" + "\n" + "墸" + record14 + "墸" + "\n" + "墸" + record15 + "墸" + "\n" + "墸" + record16 + "墸" + "\n" + "墸" + record17 + "墸" + "\n" + "墸" + record18 + "墸" + "\n" + "墸" + record19 + "墸" + "\n" + "墸" + record20 + "墸" + "\n" + "墸" + record21 + "墸" + "\n" + "墸" + record22 + "墸" + "\n" + "墸" + record23 + "墸" + "\n" + "墸" + record24 + "墸" + "\n" + "墸" + record25 + "墸" + "\n" + "墸" + record26 + "墸" + "\n" + "墸" + record27 + "墸" + "\n" + "墸" + record28 + "墸" + "\n" + "墸" + record29 + "墸" + "\n" + "墸" + record30 + "墸" + "\n" + "墸" + record31 + "墸" + "\n" + "墸" + record32 + "墸" + "\n" + "墸" + record33 + "墸" + "\n" + "墸" + record34 + "墸" + "\n" + "墸" + record35 + "墸" + "\n" + "墸" + record36 + "墸" + "\n" + "墸" + record37 + "墸" + "\n" + "墸" + record38 + "墸" + "\n" + "墸" + record39 + "墸" + "\n" + "墸" + record40 + "墸" + "\n" + "墸" + record41 + "墸" + "\n" + "墸" + record42 + "墸" + "\n" + "墸" + record43 + "墸" + "\n" + "墸" + record44 + "墸" + "\n" + "墸" + record45 + "墸" + "\n" + "墸" + record46 + "墸" + "\n" + "墸" + record47 + "墸" + "\n" + "墸" + record48 + "墸" + "\n" + "墸" + record49 + "墸" + "\n" + "墸" + record50 + "墸" + "\n" + "墸" + record51 + "墸" + "\n" + "墸" + record52 + "墸" + "\n" + "墸" + record53 + "墸" + "\n" + "墸" + record54 + "墸" + "\n" + "墸" + record55 + "墸" + "\n" + "墸" + record56 + "墸" + "\n" + "墸" + record57 + "墸" + "\n" + "墸" + record58 + "墸" + "\n" + "墸" + record59 + "墸" + "\n" + "墸" + record60 + "墸" + "\n" + "墸" + record61 + "墸" + "\n" + "墸" + record62 + "墸" + "\n" + "墸" + record63 + "墸" + "\n" + "墸" + record64 + "墸" + "\n" + "墸" + record65 + "墸" + "\n" + "墸" + record66 + "墸" + "\n" + "墸" + record67 + "墸" + "\n" + "墸" + record68 + "墸" + "\n" + "墸" + record69 + "墸" + "\n" + "墸" + record70 + "墸" + "\n" + "墸" + record71 + "墸" + "\n" + "墸" + record72 + "墸" + "\n" + "墸" + record73 + "墸" + "\n" + "墸" + record74 + "墸" + "\n" + "墸" + record75 + "墸" + "\n" + "墸" + record76 + "墸" + "\n" + "墸" + record77 + "墸" + "\n" + "墸" + record78 + "墸" + "\n" + "墸" + record79 + "墸" + "\n" + "墸" + record80 + "墸" + "\n" + "墸" + record81 + "墸" + "\n" + "墸" + record82 + "墸" + "\n" + "墸" + record83 + "墸" + "\n" + "墸" + record84 + "墸" + "\n" + "墸" + record85 + "墸" + "\n" + "墸" + record86 + "墸" + "\n" + "墸" + record87 + "墸" + "\n" + "墸" + record88 + "墸" + "\n" + "墸" + record89 + "墸" + "\n" + "墸" + record90 + "墸" + "\n" + "墸" + record91 + "墸" + "\n" + "墸" + record92 + "墸" + "\n" + "墸" + record93 + "墸";
+      google.script.run.addData2(record);
+  }
+  // -----------------------------------------------------
+  function dataAddSuccess() {
+    setTimeout(function(){
+      alert("記録しました");
+    }, 1*1000);
+    // alert("記録しました");
+    // document.getElementById('pinCode').value = '';
+    // window.top.location.href = '<?= getAppUrl() ?>?page=result';
+  }
+  // -----------------------------------------------------
+  function dataAddFail() {
+    // アラートを表示する
+    alert("予期せぬエラーが発生しました");  
+  }
+  // -----------------------------------------------------
+  function addBtnClick2() {
+    document.getElementById("e1").style.visibility = 'hidden';
+    document.getElementById("e2").style.visibility = 'hidden';
+    document.getElementById("e3").style.visibility = 'hidden';
+    document.getElementById("e4").style.visibility = 'hidden';
+    document.getElementById("e5").style.visibility = 'hidden';
+    document.getElementById("e6").style.visibility = 'hidden';
+    document.getElementById("e7").style.visibility = 'hidden';
+    document.getElementById("e8").style.visibility = 'hidden';
+    document.getElementById("e9").style.visibility = 'hidden';
+    document.getElementById("e10").style.visibility = 'hidden';
+    document.getElementById("e11").style.visibility = 'hidden';
+    document.getElementById("e12").style.visibility = 'hidden';
+    document.getElementById("e13").style.visibility = 'hidden';
+    document.getElementById("e14").style.visibility = 'hidden';
+    document.getElementById("e15").style.visibility = 'hidden';
+  }
+  function addBtnClick3() {
+    document.getElementById("e1").style.visibility = 'visible';
+    document.getElementById("e2").style.visibility = 'visible';
+    document.getElementById("e3").style.visibility = 'visible';
+    document.getElementById("e4").style.visibility = 'visible';
+    document.getElementById("e5").style.visibility = 'visible';
+    document.getElementById("e6").style.visibility = 'visible';
+    document.getElementById("e7").style.visibility = 'visible';
+    document.getElementById("e8").style.visibility = 'visible';
+    document.getElementById("e9").style.visibility = 'visible';
+    document.getElementById("e10").style.visibility = 'visible';
+    document.getElementById("e11").style.visibility = 'visible';
+    document.getElementById("e12").style.visibility = 'visible';
+    document.getElementById("e13").style.visibility = 'visible';
+    document.getElementById("e14").style.visibility = 'visible';
+    document.getElementById("e15").style.visibility = 'visible';
+  }
+  // -----------------------------------------------------
+  </script>
+</html>
