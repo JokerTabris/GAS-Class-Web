@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <base target="_top">
+  </head>
+  <body>
+    <div class="user"><?=user_name ?>さん（<?=user_class ?>）</div>
+		<div>
+			<form class="form" autocomplete="off" action="https://script.google.com/a/macros/gl.pen-kanagawa.ed.jp/s/AKfycbwhpVnxbNd5m7lvw8ZREGGlX9U7B1uYumE1fqTQ4viQEofcxosYmdjR26duBALz_Qqm0Q/exec" method="post">
+				<div>
+					<label for="pinCode">PINコード</label>
+					<input class="pinInput" type="name" style="ime-mode: inactive;" inputmode="url" id="pinCode">
+				</div>			
+				<div>
+          <input type="text" name="dummy" style="display:none;">
+					<input class="button" id="button" type="button" onClick="addBtnClick()" value="入力する">
+				</div>   
+		  </form>
+		</div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </body>
+
+  <script>
+    "use strict";
+    document.body.style.overflowY = 'hidden';
+    $(document).ready(function() {
+        $("#pinCode").keyup(function(event) {
+            if (event.which === 13) {
+                $("#button").click();
+            }
+        });
+    });
+    // -----------------------------------------------------
+    // メンバーIDからメンバー名を取得してインプットボックスmember-nameへ出力する関数
+    // *js関数1
+    // -----------------------------------------------------
+    // 引数:メンバーID
+    // function outputMemberName(memberId) {
+    //   // memberIDを引数にしてgetMemberName（*gs関数3）を実行する
+    //   // getMemberNameが成功したら…
+    //   // 返り値がある場合はインプットボックスmember-nameへ返り値を出力し、否ならばインプットボックスをリセットする
+    //   google.script.run.withSuccessHandler(function(memberName){
+    //     if (memberName) {
+    //       document.getElementById('member-name').value = memberName;
+    //     } else {
+    //       document.getElementById('member-name').value = '';
+    //     }
+    //   }).getMemberName(memberId);
+    // }
+    // -----------------------------------------------------
+    
+    // -----------------------------------------------------
+    // 「登録するボタン」をおしたときの関数 *js関数2
+    //  補足）二重サブミットを防ぐためにsubmitでフォームを送る仕様にしないことにした
+    // -----------------------------------------------------
+    function addBtnClick() {
+      // 実行してよいか確認する
+      const checkAddFlg = window.confirm('入力します');
+
+      if(checkAddFlg) { //OKをクリックしたら…
+        // フォームの入力値を取得する 
+        const pinCode = document.getElementById('pinCode').value;
+
+        // 取得した入力値を引数にしてaddData（*gs関数4）を実行する
+        // addDataが成功したら、js関数dataAddSuccess（*js関数3）を実行する
+        // addDataが失敗したら、js関数dataAddFail（*js関数4）を実行する
+        google.script.run.withSuccessHandler(dataAddSuccess).withFailureHandler(dataAddFail).addData(pinCode);
+      } else {
+        alert("入力をキャンセルしました");  
+      }
+    }
+
+    // -----------------------------------------------------
+    // addBtnClick（*js関数4）においてaddData（*gs関数4）が成功した時の関数
+    //  *js関数3
+    // -----------------------------------------------------
+    function dataAddSuccess() {
+      // alert("入力に成功しました。OKを押して，ページが切り替わるまでしばらくお待ちください。");
+      document.getElementById('pinCode').value = '';
+      // window.top.location.href = '<?= getAppUrl() ?>?page=result';
+      window.open('<?= getAppUrl() ?>?page=result');
+  
+    }
+    // -----------------------------------------------------
+
+    // -----------------------------------------------------
+    // addBtnClick（*js関数4）においてaddData（*gs関数4）が失敗した時の関数
+    //  *js関数4
+    // -----------------------------------------------------
+    function dataAddFail() {
+      // アラートを表示する
+      alert("予期せぬエラーが発生しました");  
+    }
+    // -----------------------------------------------------
+  </script>
+</html>
